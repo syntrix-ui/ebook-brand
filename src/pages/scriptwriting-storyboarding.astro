@@ -1,0 +1,9 @@
+---
+// scriptwriting-storyboarding.astro - Scriptwriting & storyboarding Service Page
+import ServicePageTemplate from '../components/ServicePageTemplate.astro';
+import { getServiceData } from '../data/servicesData';
+
+const service = getServiceData('scriptwriting-storyboarding');
+---
+
+<ServicePageTemplate service={service} />

@@ -1,0 +1,56 @@
+---
+// faqs.astro - Dedicated Frequently Asked Questions (FAQs) Page matching Figma mockup exactly
+import '../styles/globals.css';
+import Header from '../components/Header.astro';
+import FaqPageAccordions from '../components/FaqPageAccordions';
+import Footer from '../components/Footer.astro';
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content="Frequently Asked Questions (FAQs) | Fleck Publisher. Everything you need to know about book writing, editing, cover design, publishing, distribution, marketing, trailers, coaching, and ISBN services." />
+    <title>Frequently Asked Questions (FAQs) | Fleck Publisher</title>
+
+    <!-- Google Fonts Montserrat & Nunito Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300..900;1,300..900&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap" rel="stylesheet">
+  </head>
+  <body class="min-h-screen bg-white text-slate-900 font-montserrat selection:bg-[#3D2E61] selection:text-white relative overflow-x-hidden">
+    
+    <!-- Top Dark Purple Bar with Header -->
+    <div class="w-full bg-[#1E1435] relative">
+      <div class="h-28 sm:h-32">
+        <Header />
+      </div>
+    </div>
+
+    <!-- Main FAQ Section matching uploaded Figma screenshot -->
+    <main class="w-full bg-white py-14 sm:py-20 lg:py-24">
+      <div class="max-w-[1250px] mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <!-- Header Text -->
+        <div class="max-w-3xl mx-auto text-center space-y-4 mb-12 sm:mb-16">
+          <h1 class="font-nunito font-bold text-3xl sm:text-4xl md:text-[44px] text-[#23173D] tracking-tight leading-tight line-clamp-2 max-w-2xl mx-auto">
+            Frequently Asked Questions (FAQs)
+          </h1>
+          <p class="font-montserrat text-sm sm:text-[15px] text-slate-600 leading-relaxed font-normal">
+            Have questions about publishing your book with Fleck Publisher? You're not alone! We've compiled answers to the most common questions authors ask — from getting started to launching your book. If you need more help, our team is always here to assist you.
+          </p>
+        </div>
+
+        <!-- 9 Categorized Accordion Lists -->
+        <FaqPageAccordions client:load />
+
+      </div>
+    </main>
+
+    <!-- Site Footer -->
+    <Footer />
+
+  </body>
+</html>

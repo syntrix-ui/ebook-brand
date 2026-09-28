@@ -1,0 +1,81 @@
+---
+// AboutUsHero.astro - About Us Mission Hero Section matching Figma mockup
+---
+
+<section 
+  class="relative w-full min-h-[580px] sm:min-h-[640px] lg:min-h-[700px] bg-cover bg-right lg:bg-center flex items-center pt-32 sm:pt-36 lg:pt-40 pb-16 lg:pb-24 font-montserrat overflow-hidden" 
+  style="background-image: url('/Container.png'); background-color: #0b090e;"
+>
+  <!-- Deep Dark Gradient Overlay to ensure high contrast and readability on left -->
+  <div class="absolute inset-0 bg-gradient-to-r from-black/95 via-black/85 lg:via-black/60 to-transparent -z-0"></div>
+
+  <div class="max-w-[1400px] mx-auto px-4 sm:px-6 w-full relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+    
+    <!-- Left Column: Content & Trust Badges -->
+    <div class="lg:col-span-8 space-y-6 text-white">
+      
+      <!-- Top Subtitle -->
+      <div>
+        <span class="text-base sm:text-lg lg:text-xl font-normal text-white font-montserrat block">
+          About Us
+        </span>
+      </div>
+
+      <!-- Main Headline -->
+      <h1 class="font-nunito font-bold text-4xl sm:text-6xl lg:text-[68px] leading-[1.06] text-white tracking-tight">
+        Fleck Publisher’s <br />
+        Mission
+      </h1>
+
+      <!-- Description Paragraph -->
+      <p class="text-xs sm:text-sm lg:text-[15px] text-white/85 font-normal leading-relaxed max-w-2xl">
+        Yes, we are on a mission to help authors publish their life-changing ideas via beautiful books.That’s why Fleck Publisher was born: to make publishing services affordable and accessible to all authors so you don’t have to do it alone.
+      </p>
+
+      <!-- Social Proof / Join Badge Line -->
+      <div class="pt-2 space-y-4">
+        <div class="flex flex-wrap items-center gap-2 text-xs sm:text-sm lg:text-base text-white">
+          <span>Join</span>
+          <img src="/icons/fluent-color_star-16.svg" alt="Star Icon" class="w-4 h-4 shrink-0 inline" />
+          <span class="font-bold text-white">2,389+</span>
+          <span class="text-white/90 font-normal">Writers Who Got Their Book Published.</span>
+        </div>
+
+        <!-- Trust Badges Row -->
+        <div class="flex flex-wrap items-center gap-6 sm:gap-8 pt-1">
+          <!-- Google My Business Logo -->
+          <div class="flex items-center justify-center h-[55px] sm:h-[65px] shrink-0">
+            <img 
+              src="/icons/google-my-business.png" 
+              alt="Google My Business" 
+              class="h-[55px] sm:h-[65px] w-auto object-contain" 
+            />
+          </div>
+
+          <!-- Bark Logo -->
+          <div class="flex items-center justify-center h-[55px] sm:h-[65px] shrink-0">
+            <img 
+              src="/icons/bark.png" 
+              alt="Bark" 
+              class="h-[45px] sm:h-[55px] w-auto object-contain" 
+            />
+          </div>
+
+          <!-- Reviews.io Logo -->
+          <div class="flex items-center justify-center h-[55px] sm:h-[65px] shrink-0">
+            <img 
+              src="/icons/reviews-io.png" 
+              alt="Reviews.io" 
+              class="h-[55px] sm:h-[65px] w-auto object-contain" 
+            />
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Right Column: Subtle ambient space letting the book stacks shine through -->
+    <div class="lg:col-span-4 hidden lg:block"></div>
+
+  </div>
+</section>

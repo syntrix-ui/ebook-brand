@@ -1,0 +1,401 @@
+---
+import '../../styles/globals.css';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import SuccessStories from '../../components/SuccessStories.astro';
+import { blogsData, type BlogPost } from '../../data/blogsData';
+
+export function getStaticPaths() {
+  return blogsData.map((blog) => ({
+    params: { slug: blog.slug },
+    props: { blog },
+  }));
+}
+
+interface Props {
+  blog: BlogPost;
+}
+
+const { blog } = Astro.props;
+
+// Related posts (excluding current post, max 3)
+const relatedPosts = blogsData
+  .filter((p) => p.slug !== blog.slug)
+  .slice(0, 3);
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={blog.excerpt} />
+    <title>{blog.title} | Fleck Publisher</title>
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content={`${blog.title} | Fleck Publisher`} />
+    <meta property="og:description" content={blog.excerpt} />
+    <meta property="og:image" content={blog.image} />
+    <meta property="og:type" content="article" />
+
+    <!-- Google Fonts Montserrat & Nunito Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300..900;1,300..900&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap" rel="stylesheet">
+
+    <!-- Schema.org Article Structured Data -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": blog.title,
+      "image": [blog.image],
+      "datePublished": blog.date,
+      "author": {
+        "@type": "Organization",
+        "name": "Fleck Publisher"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Fleck Publisher",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://fleckpublisher.com/logo.svg"
+        }
+      },
+      "description": blog.excerpt
+    })} />
+  </head>
+  <body class="min-h-screen bg-[#FAF9FC] text-slate-900 font-montserrat selection:bg-[#3D2E61] selection:text-white relative overflow-x-hidden">
+    
+    <!-- Top Dark Purple Bar with Header -->
+    <div class="w-full bg-[#1E1435] relative">
+      <div class="h-28 sm:h-32">
+        <Header />
+      </div>
+    </div>
+
+    <!-- Hero Header Banner Section (Matching contact.astro banner exactly) -->
+    <section class="w-full bg-gradient-to-b from-[#1E1435] to-[#2B1B4D] text-white py-12 sm:py-18 px-4 sm:px-6 relative overflow-hidden">
+      <!-- Ambient Glow Decor -->
+      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[350px] bg-purple-600/20 blur-[130px] rounded-full pointer-events-none"></div>
+
+      <div class="max-w-[1100px] mx-auto text-center relative z-10 space-y-4">
+        
+        <!-- Breadcrumbs -->
+        <nav class="flex items-center justify-center gap-2 text-xs sm:text-sm text-slate-300 font-nunito mb-3">
+          <a href="/" class="hover:text-white transition-colors">Home</a>
+          <span>/</span>
+          <a href="/blog" class="hover:text-white transition-colors">Blog</a>
+          <span>/</span>
+          <span class="text-purple-300 font-medium">{blog.category}</span>
+        </nav>
+
+        <!-- Category & Date Badge -->
+        <div class="flex items-center justify-center gap-3">
+          <span class="px-3.5 py-1 rounded-full bg-white/10 border border-white/20 text-white text-xs font-bold uppercase tracking-wider">
+            {blog.category}
+          </span>
+          <span class="text-xs sm:text-sm text-slate-300">
+            {blog.date}
+          </span>
+          <span class="text-slate-400">•</span>
+          <span class="text-xs sm:text-sm text-purple-200 font-medium">
+            {blog.readTime}
+          </span>
+        </div>
+
+        <h1 class="font-nunito font-bold text-2xl sm:text-4xl lg:text-[44px] text-white tracking-tight leading-snug max-w-4xl mx-auto">
+          {blog.title}
+        </h1>
+
+        <p class="font-montserrat text-xs sm:text-sm text-slate-300 max-w-2xl mx-auto leading-relaxed font-normal pt-2">
+          {blog.excerpt}
+        </p>
+      </div>
+    </section>
+
+    <!-- Main Content Grid -->
+    <main class="w-full py-12 sm:py-20 px-4 sm:px-6">
+      <div class="max-w-[1300px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+        
+        <!-- Left: Full Article -->
+        <article class="lg:col-span-8 bg-white border border-slate-200/90 rounded-[28px] p-6 sm:p-10 shadow-xl shadow-slate-200/50 space-y-8">
+          
+          <!-- Featured Image -->
+          <div class="w-full rounded-2xl overflow-hidden shadow-md border border-slate-200/80 bg-slate-100 max-h-[460px]">
+            <img 
+              src={blog.image} 
+              alt={blog.title} 
+              class="w-full h-full object-cover" 
+            />
+          </div>
+
+          <!-- Social Share Row -->
+          <div class="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-slate-100">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full bg-[#3D2E61] flex items-center justify-center text-white font-bold text-sm shadow-sm">
+                FP
+              </div>
+              <div>
+                <p class="text-sm font-bold text-[#23173D]">Fleck Publisher Editorial Team</p>
+                <p class="text-xs text-slate-500">Publishing Specialists & Editors</p>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-2 text-xs font-semibold text-slate-600">
+              <span class="hidden sm:inline text-slate-400">Share article:</span>
+              <a 
+                href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(blog.title)}&url=https://fleckpublisher.com/blog/${blog.slug}`}
+                target="_blank" 
+                rel="noopener noreferrer"
+                class="w-8 h-8 rounded-lg bg-slate-100 hover:bg-[#3D2E61] hover:text-white border border-slate-200 flex items-center justify-center text-slate-700 transition-all"
+                title="Share on X (Twitter)"
+              >
+                𝕏
+              </a>
+              <a 
+                href={`https://www.linkedin.com/sharing/share-offsite/?url=https://fleckpublisher.com/blog/${blog.slug}`}
+                target="_blank" 
+                rel="noopener noreferrer"
+                class="w-8 h-8 rounded-lg bg-slate-100 hover:bg-[#3D2E61] hover:text-white border border-slate-200 flex items-center justify-center text-slate-700 transition-all"
+                title="Share on LinkedIn"
+              >
+                in
+              </a>
+              <a 
+                href={`https://www.facebook.com/sharer/sharer.php?u=https://fleckpublisher.com/blog/${blog.slug}`}
+                target="_blank" 
+                rel="noopener noreferrer"
+                class="w-8 h-8 rounded-lg bg-slate-100 hover:bg-[#3D2E61] hover:text-white border border-slate-200 flex items-center justify-center text-slate-700 transition-all"
+                title="Share on Facebook"
+              >
+                f
+              </a>
+            </div>
+          </div>
+
+          <!-- HTML Article Body -->
+          <div 
+            class="blog-content-body font-montserrat text-slate-700 text-sm sm:text-base leading-relaxed space-y-5"
+            set:html={blog.content}
+          />
+
+          <!-- FAQs Section If Available -->
+          {blog.faqs && blog.faqs.length > 0 && (
+            <div class="pt-8 border-t border-slate-100">
+              <h3 class="font-nunito font-bold text-2xl text-[#23173D] mb-6">
+                Frequently Asked Questions
+              </h3>
+              <div class="space-y-4">
+                {blog.faqs.map((faq) => (
+                  <div class="bg-[#F8F7FB] border border-slate-200/80 rounded-2xl p-5 sm:p-6">
+                    <h4 class="font-nunito font-bold text-base sm:text-lg text-[#23173D] mb-2">
+                      {faq.question}
+                    </h4>
+                    <p class="font-montserrat text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
+                      {faq.answer}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          <!-- Author Box -->
+          <div class="p-6 sm:p-8 rounded-2xl bg-[#F5F4F9] border border-slate-200/80 flex flex-col sm:flex-row items-center sm:items-start gap-5">
+            <div class="w-14 h-14 rounded-full bg-[#3D2E61] flex items-center justify-center text-white font-extrabold text-lg shrink-0 shadow-md">
+              FP
+            </div>
+            <div>
+              <h4 class="font-nunito font-bold text-lg text-[#23173D] mb-1">About Fleck Publisher</h4>
+              <p class="font-montserrat text-xs sm:text-sm text-slate-600 leading-relaxed font-normal mb-3">
+                Fleck Publisher empowers independent and commercial authors worldwide through professional ghostwriting, precision editing, award-winning cover design, and global distribution.
+              </p>
+              <a 
+                href="/contact" 
+                class="inline-flex items-center gap-1.5 text-xs font-bold text-[#3D2E61] hover:underline uppercase tracking-wider"
+              >
+                Discuss your book project &rarr;
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Right: Sticky Sidebar -->
+        <aside class="lg:col-span-4 space-y-8 sticky top-6">
+          
+          <!-- Consultation CTA Card (Matching Contact Page aesthetic) -->
+          <div class="bg-gradient-to-b from-[#2B1B4D] to-[#1E1435] text-white rounded-[24px] p-6 sm:p-8 shadow-xl relative overflow-hidden">
+            <div class="absolute -top-10 -right-10 w-28 h-28 bg-purple-500/20 blur-2xl rounded-full"></div>
+            
+            <span class="inline-block px-3 py-1 rounded-full bg-white/10 border border-white/20 text-purple-200 text-[11px] font-bold uppercase tracking-wider mb-3">
+              Free Consultation
+            </span>
+
+            <h3 class="font-nunito font-bold text-xl sm:text-2xl text-white mb-2 leading-snug">
+              Ready to Publish Your Book?
+            </h3>
+
+            <p class="font-montserrat text-xs sm:text-sm text-slate-300 leading-relaxed mb-6 font-normal">
+              Get an expert manuscript evaluation, publishing plan, and custom quote from our dedicated specialists.
+            </p>
+
+            <a 
+              href="/contact" 
+              class="w-full py-3.5 px-4 rounded-xl bg-white hover:bg-slate-100 text-[#3D2E61] font-bold text-sm text-center block transition-all shadow-md cursor-pointer"
+            >
+              Request Free Consultation
+            </a>
+
+            <div class="mt-4 pt-4 border-t border-white/10 text-center">
+              <a href="tel:+18048436684" class="text-xs text-purple-200 hover:text-white transition-colors font-semibold">
+                Direct Call: +1 804 843 6684
+              </a>
+            </div>
+          </div>
+
+          <!-- Featured Publishing Services -->
+          <div class="bg-white rounded-2xl border border-slate-200/90 p-6 shadow-md">
+            <h4 class="font-nunito font-bold text-base text-[#23173D] mb-4">
+              Explore Our Services
+            </h4>
+            <ul class="space-y-2 text-xs sm:text-sm font-medium">
+              <li>
+                <a href="/book-publishing" class="text-slate-700 hover:text-[#3D2E61] flex items-center justify-between py-1 transition-colors">
+                  <span>Book Publishing</span>
+                  <span class="text-purple-600 font-bold">&rarr;</span>
+                </a>
+              </li>
+              <li>
+                <a href="/book-writing" class="text-slate-700 hover:text-[#3D2E61] flex items-center justify-between py-1 transition-colors">
+                  <span>Ghostwriting & Coaching</span>
+                  <span class="text-purple-600 font-bold">&rarr;</span>
+                </a>
+              </li>
+              <li>
+                <a href="/book-cover-design" class="text-slate-700 hover:text-[#3D2E61] flex items-center justify-between py-1 transition-colors">
+                  <span>Book Cover Design</span>
+                  <span class="text-purple-600 font-bold">&rarr;</span>
+                </a>
+              </li>
+              <li>
+                <a href="/book-editing" class="text-slate-700 hover:text-[#3D2E61] flex items-center justify-between py-1 transition-colors">
+                  <span>Editing & Proofreading</span>
+                  <span class="text-purple-600 font-bold">&rarr;</span>
+                </a>
+              </li>
+              <li>
+                <a href="/ebook-marketing" class="text-slate-700 hover:text-[#3D2E61] flex items-center justify-between py-1 transition-colors">
+                  <span>eBook Marketing & PR</span>
+                  <span class="text-purple-600 font-bold">&rarr;</span>
+                </a>
+              </li>
+              <li>
+                <a href="/book-trailer" class="text-slate-700 hover:text-[#3D2E61] flex items-center justify-between py-1 transition-colors">
+                  <span>Cinematic Book Trailer</span>
+                  <span class="text-purple-600 font-bold">&rarr;</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Related Posts -->
+          <div class="bg-white rounded-2xl border border-slate-200/90 p-6 shadow-md">
+            <h4 class="font-nunito font-bold text-base text-[#23173D] mb-4">
+              Related Articles
+            </h4>
+            <div class="space-y-4">
+              {relatedPosts.map((rel) => (
+                <a href={`/blog/${rel.slug}`} class="group block border-b border-slate-100 pb-3 last:border-b-0 last:pb-0">
+                  <span class="text-[10px] font-bold text-[#3D2E61] uppercase tracking-wider block mb-1">
+                    {rel.category}
+                  </span>
+                  <h5 class="font-nunito font-bold text-xs sm:text-sm text-slate-800 group-hover:text-[#3D2E61] transition-colors line-clamp-2 leading-snug">
+                    {rel.title}
+                  </h5>
+                  <span class="text-[11px] text-slate-400 mt-1 block">
+                    {rel.readTime}
+                  </span>
+                </a>
+              ))}
+            </div>
+          </div>
+
+        </aside>
+      </div>
+    </main>
+
+    <!-- Client Testimonials Carousel -->
+    <SuccessStories />
+
+    <!-- Site Footer -->
+    <Footer />
+
+    <!-- Global Prose Styles for Clean Blog HTML -->
+    <style is:global>
+      .blog-content-body h2 {
+        font-family: 'Nunito Sans', sans-serif;
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #23173D;
+        margin-top: 2rem;
+        margin-bottom: 0.8rem;
+        line-height: 1.3;
+        border-bottom: 2px solid #FAF9FC;
+        padding-bottom: 0.4rem;
+      }
+      .blog-content-body h3 {
+        font-family: 'Nunito Sans', sans-serif;
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: #23173D;
+        margin-top: 1.6rem;
+        margin-bottom: 0.6rem;
+      }
+      .blog-content-body p {
+        margin-bottom: 1.2rem;
+        line-height: 1.75;
+        color: #334155;
+      }
+      .blog-content-body strong {
+        color: #1e293b;
+        font-weight: 600;
+      }
+      .blog-content-body a {
+        color: #6b21a8;
+        font-weight: 500;
+        text-decoration: underline;
+        text-underline-offset: 3px;
+        transition: color 0.15s;
+      }
+      .blog-content-body a:hover {
+        color: #3D2E61;
+      }
+      .blog-content-body ol, .blog-content-body ul {
+        margin-top: 0.8rem;
+        margin-bottom: 1.4rem;
+        padding-left: 1.4rem;
+      }
+      .blog-content-body ol {
+        list-style-type: decimal;
+      }
+      .blog-content-body ul {
+        list-style-type: disc;
+      }
+      .blog-content-body li {
+        margin-bottom: 0.45rem;
+        line-height: 1.65;
+        color: #475569;
+      }
+      .blog-content-body img {
+        border-radius: 1rem;
+        margin: 1.5rem 0;
+        max-width: 100%;
+        height: auto;
+        border: 1px solid #e2e8f0;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+      }
+    </style>
+  </body>
+</html>

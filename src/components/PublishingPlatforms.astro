@@ -1,0 +1,89 @@
+---
+// PublishingPlatforms.astro - Platforms Where You Can Publish Section
+const platforms = [
+  {
+    name: "Amazon KDP",
+    icon: "/icons/amazon-kdp.png",
+    desc: "This is the largest ebook marketplace. We format your book to pass Kindle checks, optimize categories, and position it for ranking from day one.",
+    cta: "Start Your Book"
+  },
+  {
+    name: "Apple Books",
+    icon: "/icons/apple-books.png",
+    desc: "A top platform for design-conscious readers, you meet elite readers who value time and luxury. We prep your metadata, test your files for Apple's UX standards, and manage the upload end-to-end.",
+    cta: "Start Your Book"
+  },
+  {
+    name: "Google Books",
+    icon: "/icons/google-books.png",
+    desc: "Google Books gives books the search-integrated visibility with global reach. We configure your preview settings, activate discoverability, and ensure smooth indexing on Google SERPs.",
+    cta: "Start Your Book"
+  },
+  {
+    name: "Kobo Writing Life",
+    icon: "/icons/kobo.png",
+    desc: "Rakuten Kobo is an international channel where your book meets its ideal readers. We adapt your pricing by region, handle EPUB specs, and list your book across Kobo's retail network.",
+    cta: "Start Your Book"
+  },
+  {
+    name: "Barnes & Noble Press",
+    icon: "/icons/barnes-noble.png",
+    desc: "B&N is perfect — you can go for digital and print. We deliver files that meet B&N's standards for Nook and print-on-demand—and handle setup for seamless listing.",
+    cta: "Start Your Book"
+  }
+];
+---
+
+<section class="w-full bg-white py-16 sm:py-24 text-slate-900 font-montserrat">
+  <div class="max-w-[1350px] mx-auto px-4 sm:px-6">
+    
+    <!-- Section Header -->
+    <div class="text-center mb-12 sm:mb-16">
+      <h2 class="font-nunito font-bold text-3xl sm:text-4xl lg:text-[44px] text-[#3D2E61] tracking-tight line-clamp-2">
+        Platforms Where You Can Publish
+      </h2>
+    </div>
+
+    <!-- 5 Columns Platform Cards Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5">
+      {platforms.map((p) => (
+        <div class="bg-white rounded-3xl p-6 border border-slate-100 shadow-[0_4px_24px_rgba(0,0,0,0.04)] hover:shadow-[0_12px_32px_rgba(61,46,97,0.1)] hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between text-center group">
+          
+          <div>
+            <!-- Icon Image from icons folder -->
+            <div class="flex justify-center mb-5">
+              <img 
+                src={p.icon} 
+                alt={p.name} 
+                class="w-14 h-14 object-contain select-none transition-transform duration-300 group-hover:scale-105" 
+                loading="lazy"
+              />
+            </div>
+
+            <!-- Platform Title -->
+            <h3 class="font-nunito font-bold text-lg text-slate-900 tracking-tight mb-3">
+              {p.name}
+            </h3>
+
+            <!-- Description -->
+            <p class="text-xs sm:text-[13px] text-slate-500 leading-relaxed font-normal">
+              {p.desc}
+            </p>
+          </div>
+
+          <!-- Action Button at Bottom -->
+          <div class="pt-6 mt-auto">
+            <a 
+              href="/contact" 
+              class="w-full inline-flex items-center justify-center py-2.5 px-4 bg-[#3D2E61] hover:bg-[#4d3a7a] active:scale-[0.99] text-white font-bold text-xs rounded-xl shadow-xs transition-all duration-150 cursor-pointer"
+            >
+              {p.cta}
+            </a>
+          </div>
+
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>

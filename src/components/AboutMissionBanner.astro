@@ -1,0 +1,25 @@
+---
+// AboutMissionBanner.astro - Dark Purple Full-Width Mission Banner with Video Player
+import VideoPlayer from './VideoPlayer.astro';
+---
+
+<section class="w-full bg-[#3D2E61] py-16 sm:py-20 lg:py-24 text-white font-montserrat relative overflow-hidden">
+  <div class="max-w-[1300px] mx-auto px-4 sm:px-6 text-center">
+    
+    <!-- Main Headline -->
+    <h2 class="font-nunito font-semibold text-3xl sm:text-4xl lg:text-[42px] leading-tight text-white tracking-tight mb-4 sm:mb-5 max-w-4xl mx-auto line-clamp-2">
+      Your Book Deserves to Be Seen and Celebrated
+    </h2>
+
+    <!-- Subtitle / Mission Statement -->
+    <p class="text-purple-100/90 text-sm sm:text-base leading-relaxed font-normal max-w-3xl mx-auto mb-10 sm:mb-12">
+      Publishing is a journey, and we're here to guide you every step of the way—connecting your message with passionate readers worldwide through relentless craftsmanship, strategic positioning, and transparent execution.
+    </p>
+
+    <!-- Public Folder Video Player -->
+    <div class="w-full">
+      <VideoPlayer />
+    </div>
+
+  </div>
+</section>

@@ -1,0 +1,124 @@
+---
+// book-cover-design.astro - Book Cover Design Services Page matching uploaded design mockup exactly
+import '../styles/globals.css';
+import Header from '../components/Header.astro';
+import AboutHero from '../components/AboutHero.astro';
+import AboutManuscript from '../components/AboutManuscript.astro';
+import FleckDifference from '../components/FleckDifference.astro';
+import PublishingProcess from '../components/PublishingProcess.astro';
+import WhyChooseFleck from '../components/WhyChooseFleck.astro';
+import SuccessStories from '../components/SuccessStories.astro';
+import Roadmap from '../components/Roadmap.astro';
+import Faqs from '../components/Faqs.astro';
+import Footer from '../components/Footer.astro';
+import { getServiceData } from '../data/servicesData';
+
+const service = getServiceData('book-cover-design');
+
+const coverFaqs = [
+  {
+    id: 1,
+    question: "How long does the cover design process take?",
+    answer: "The overall cover design process at Fleck Publisher takes 2-23 weeks on average. However, we do have urgent options available for quick launch."
+  },
+  {
+    id: 2,
+    question: "Do I own the rights to the final design?",
+    answer: "Yes, you retain 100% full commercial rights and intellectual property ownership of your final cover artwork and files."
+  },
+  {
+    id: 3,
+    question: "Can I request multiple revision rounds?",
+    answer: "Absolutely. We include collaborative iteration rounds to ensure the final design meets your exact vision and genre standards."
+  },
+  {
+    id: 4,
+    question: "Will the cover be accepted by Amazon and other platforms?",
+    answer: "Yes. All cover files are formatted and validated to meet the strict technical specifications of Amazon KDP, IngramSpark, Apple Books, and Barnes & Noble."
+  }
+];
+---
+
+<html lang="en" class="dark">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={service.metaDescription} />
+    <title>{service.metaTitle}</title>
+
+    <!-- Google Fonts Montserrat & Nunito Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300..900;1,300..900&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap" rel="stylesheet">
+  </head>
+  <body class="min-h-screen bg-[#0a080d] text-slate-100 font-montserrat selection:bg-[#3D2E61] selection:text-white relative overflow-x-hidden">
+    
+    <!-- Header / Navigation Bar -->
+    <Header />
+
+    <!-- Main Content Area arranged in exact sequence matching design mockup -->
+    <main class="w-full">
+      <!-- Section 1: Hero without consultation form on right -->
+      <AboutHero 
+        subtitle={service.hero.badge}
+        titleNormal={service.hero.title}
+        titleBold={service.hero.titleHighlight}
+        desc={service.hero.subtitle}
+        serviceTag={service.hero.serviceTag}
+        bgImg={service.hero.bgImg}
+        showForm={false}
+      />
+
+      <!-- Section 2: Submit Your Manuscript (6 numbered cards with action buttons) -->
+      <AboutManuscript 
+        title={service.manuscript.title}
+        subtitle={service.manuscript.subtitle}
+        cards={service.manuscript.cards}
+      />
+
+      <!-- Section 3: The Difference (2 Cards: Who Should Get Help & Styles We Design) -->
+      <FleckDifference 
+        badge={service.difference.badge}
+        title={service.difference.title}
+        subtitle={service.difference.subtitle}
+        cards={service.difference.cards}
+      />
+
+      <!-- Section 5: Our 4-Step Cover Design Process -->
+      <PublishingProcess 
+        badge={service.process.badge}
+        title={service.process.title}
+        subtitle={service.process.subtitle}
+        steps={service.process.steps}
+      />
+
+      <!-- Section 6: Why Authors Choose Fleck Publisher's Cover Design Team -->
+      <WhyChooseFleck 
+        title={service.whyChoose.title}
+        points={service.whyChoose.points}
+        btnText={service.whyChoose.btnText}
+        authorImg={service.whyChoose.authorImg}
+      />
+
+      <!-- Section 7: Success Stories (Testimonials Video Carousel) -->
+      <SuccessStories />
+
+      <!-- Section 8: Have An Amazing Idea? Roadmap Form -->
+      <Roadmap />
+
+      <!-- Section 9: Frequently Asked Questions (FAQs) -->
+      <Faqs 
+        title="Frequently Asked Questions (FAQs)"
+        description=""
+        items={coverFaqs}
+        showViewAll={true}
+      />
+    </main>
+
+    <!-- Section 10: Footer -->
+    <Footer />
+
+  </body>
+</html>

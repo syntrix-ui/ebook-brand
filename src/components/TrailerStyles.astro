@@ -1,0 +1,85 @@
+---
+// TrailerStyles.astro - Trailer Styles We Develop (4 cards grid matching Figma)
+interface StyleItem {
+  title: string;
+  desc: string;
+  icon: string;
+}
+
+const styles: StyleItem[] = [
+  {
+    title: "Cinematic Book Trailers",
+    desc: "Hollywood-grade grading, live-action sequences, orchestral scores, and high-tension pacing built to evoke blockbuster anticipation.",
+    icon: "/book trailer/Overlay.png"
+  },
+  {
+    title: "2D & 3D Character & Motion Graphics",
+    desc: "Stylized character animation, dynamic particle effects, and 3D camera sweeps designed for fantasy, sci-fi, and graphic novels.",
+    icon: "/book trailer/Overlay (1).png"
+  },
+  {
+    title: "Typography-Driven Action Trailers",
+    desc: "Punchy, fast-paced kinetic text, rapid cuts, and high-impact sound foley engineered for BookTok, Instagram Reels, and viral conversions.",
+    icon: "/book trailer/Overlay (2).png"
+  },
+  {
+    title: "Atmospheric & Minimalist Teasers",
+    desc: "Subtle mood-setting visuals, eerie ambiances, and poetic voiceover for literary fiction, memoirs, poetry, and psychological thrillers.",
+    icon: "/book trailer/Overlay (6).png"
+  }
+];
+---
+
+<section class="w-full bg-white py-16 sm:py-24 text-slate-900 font-montserrat border-t border-slate-100">
+  <div class="max-w-[1300px] mx-auto px-4 sm:px-6">
+    
+    <!-- Section Header -->
+    <div class="text-center space-y-4 mb-14 sm:mb-20 max-w-3xl mx-auto">
+      <h2 class="font-nunito font-bold text-3xl sm:text-5xl lg:text-[46px] leading-tight text-slate-900 tracking-tight line-clamp-2">
+        Trailer Styles We Develop
+      </h2>
+      <p class="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal max-w-2xl mx-auto">
+        Tailor your visual narrative with cinematic styles calibrated specifically for genre audiences and social media discovery algorithms.
+      </p>
+    </div>
+
+    <!-- 4 Cards Grid (4 per row on desktop, 2 on tablet, 1 on mobile) -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-7">
+      {styles.map((item) => (
+        <div class="bg-white rounded-[24px] p-6 sm:p-7 border border-slate-200/80 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group">
+          <div>
+            <!-- Icon -->
+            <div class="w-14 h-14 rounded-2xl bg-purple-50 flex items-center justify-center mb-6 group-hover:scale-105 transition-transform duration-200">
+              <img 
+                src={item.icon} 
+                alt={item.title} 
+                class="w-8 h-8 object-contain"
+              />
+            </div>
+
+            <!-- Title -->
+            <h3 class="font-nunito font-bold text-lg text-slate-900 mb-3 group-hover:text-[#3D2E61] transition-colors">
+              {item.title}
+            </h3>
+
+            <!-- Description -->
+            <p class="text-xs sm:text-[13px] text-slate-600 leading-relaxed font-normal">
+              {item.desc}
+            </p>
+          </div>
+
+          <!-- CTA Button -->
+          <div class="pt-6">
+            <a 
+              href="/contact" 
+              class="w-full py-2.5 bg-[#3D2E61] hover:bg-[#4d3a7a] active:scale-[0.99] text-white font-bold text-xs rounded-xl shadow-xs text-center transition-all duration-200 block"
+            >
+              Start Your Book
+            </a>
+          </div>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>

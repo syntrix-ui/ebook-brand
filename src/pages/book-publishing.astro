@@ -1,0 +1,9 @@
+---
+// book-publishing.astro - Book Publishing Service Page
+import ServicePageTemplate from '../components/ServicePageTemplate.astro';
+import { getServiceData } from '../data/servicesData';
+
+const service = getServiceData('book-publishing');
+---
+
+<ServicePageTemplate service={service} />

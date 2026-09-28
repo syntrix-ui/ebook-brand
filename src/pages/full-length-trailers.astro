@@ -1,0 +1,9 @@
+---
+// full-length-trailers.astro - Full-Length Launch Trailers Service Page
+import ServicePageTemplate from '../components/ServicePageTemplate.astro';
+import { getServiceData } from '../data/servicesData';
+
+const service = getServiceData('full-length-trailers');
+---
+
+<ServicePageTemplate service={service} />

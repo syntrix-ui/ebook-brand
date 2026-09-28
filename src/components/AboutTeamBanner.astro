@@ -1,0 +1,50 @@
+---
+// AboutTeamBanner.astro - Inside Fleck's Publishing Department Section with Embedded Video
+import VideoPlayer from './VideoPlayer.astro';
+
+interface Props {
+  headline?: string;
+  subheading?: string;
+  p1?: string;
+  p2?: string;
+}
+
+const {
+  headline = "Inside Fleck’s Publishing Department",
+  subheading = "We publish books because it’s our day job.",
+  p1 = "To serve our comprehensive book publishing services, we have a strong team comprising ISBN registration staff, publishing ops specialists, metadata pros, formatting specialists, and QA reviewers who make sure your files launch flawlessly.",
+  p2 = "Every book at Fleck Publisher goes through a structured workflow: platform targeting, category strategy, file testing, metadata mapping, and final uploads across self-publishing and book distribution platforms. In short, our book publishing services go beyond pressing ‘upload’ — it’s launching with intent."
+} = Astro.props;
+---
+
+<section class="w-full bg-[#3D2E61] py-16 sm:py-20 lg:py-24 text-white font-montserrat relative overflow-hidden">
+  <div class="max-w-[1300px] mx-auto px-4 sm:px-6 text-center">
+    
+    <!-- Main Headline -->
+    <h2 class="font-nunito font-semibold text-3xl sm:text-4xl lg:text-[40px] leading-tight text-white tracking-normal mb-3 sm:mb-4 max-w-4xl mx-auto line-clamp-2">
+      {headline}
+    </h2>
+
+    <!-- Subheading -->
+    <h3 class="font-montserrat font-normal text-lg sm:text-xl text-white/95 tracking-normal mb-6 sm:mb-8">
+      {subheading}
+    </h3>
+
+    <!-- Description Paragraphs with matching exact width & line wrap -->
+    <div class="max-w-[850px] mx-auto space-y-4 text-center mb-10 sm:mb-12">
+      <p class="text-xs sm:text-sm lg:text-[14px] text-white/85 leading-[1.7] font-normal">
+        {p1}
+      </p>
+
+      <p class="text-xs sm:text-sm lg:text-[14px] text-white/85 leading-[1.7] font-normal">
+        {p2}
+      </p>
+    </div>
+
+    <!-- Embedded Public Folder Video Player -->
+    <div class="w-full">
+      <VideoPlayer />
+    </div>
+
+  </div>
+</section>

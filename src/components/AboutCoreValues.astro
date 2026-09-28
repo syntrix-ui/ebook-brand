@@ -1,0 +1,110 @@
+---
+// AboutCoreValues.astro - Our Core Values 6-Card Alternating Grid matching Figma mockup
+const values = [
+  {
+    type: "image",
+    src: "/core-values-teamwork.jpg",
+    alt: "Shared Responsibility Team Collaboration"
+  },
+  {
+    type: "text",
+    num: "01",
+    title: "Shared Responsibility",
+    desc: "We treat your book as if it were our own. From editing to distribution, we share the weight of your publishing journey with proactive communication and meticulous attention to detail."
+  },
+  {
+    type: "text",
+    num: "02",
+    title: "Author Focused",
+    desc: "You stay in total creative and financial control. We advise, elevate, and execute with precision, but every final decision, copyright, and royalty belongs entirely to you."
+  },
+  {
+    type: "image",
+    src: "/Overlay+Shadow.png",
+    alt: "Author Focused Strategy"
+  },
+  {
+    type: "image",
+    src: "/Overlay+Shadow (1).png",
+    alt: "Publishing Vision Creative Innovation"
+  },
+  {
+    type: "text",
+    num: "03",
+    title: "Publishing Vision",
+    desc: "We continuously push the boundaries of modern self-publishing—leveraging high-converting metadata, next-generation formatting, and global retail distribution channels."
+  }
+];
+---
+
+<section class="w-full bg-[#FBFBFE] py-16 sm:py-24 text-slate-900 font-montserrat border-t border-slate-100">
+  <div class="max-w-[1300px] mx-auto px-4 sm:px-6">
+    
+    <!-- Section Header -->
+    <div class="text-center space-y-4 mb-14 sm:mb-20 max-w-2xl mx-auto">
+      <div>
+        <span class="text-xs sm:text-sm font-bold uppercase tracking-widest text-[#3D2E61] font-montserrat block">
+          OUR VALUES
+        </span>
+      </div>
+
+      <h2 class="font-nunito font-bold text-3xl sm:text-5xl lg:text-[46px] leading-tight text-slate-900 tracking-tight line-clamp-2">
+        Our Core Values
+      </h2>
+    </div>
+
+    <!-- 2-Column Alternating Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 items-stretch">
+      {values.map((v) => (
+        v.type === "image" ? (
+          <div class="rounded-[28px] overflow-hidden border border-slate-200/80 shadow-[0_4px_24px_rgba(0,0,0,0.04)] hover:shadow-xl transition-all duration-300 group h-[280px] sm:h-[320px] relative bg-slate-100">
+            <img 
+              src={v.src} 
+              alt={v.alt} 
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              loading="lazy"
+            />
+          </div>
+        ) : (
+          <div class="bg-white rounded-[28px] p-8 sm:p-10 border border-slate-200/90 shadow-[0_4px_24px_rgba(0,0,0,0.03)] hover:shadow-[0_12px_32px_rgba(61,46,97,0.1)] hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group h-[280px] sm:h-[320px] relative overflow-hidden">
+            
+            <!-- Soft Gradient Blur in Top-Right Corner matching Figma -->
+            <div class="absolute -top-6 -right-6 w-32 h-32 bg-[#E2DFEB]/90 rounded-full blur-2xl pointer-events-none"></div>
+
+            <div class="relative z-10">
+              <!-- Top Row: Squircle Badge -->
+              <div class="flex items-center justify-between mb-5">
+                <span class="text-[11px] font-bold text-slate-400 uppercase tracking-widest">
+                  VALUE {v.num}
+                </span>
+                <div class="w-8 h-8 rounded-[12px] bg-slate-100/90 border border-slate-200/80 flex items-center justify-center text-[11px] font-semibold text-slate-600 shadow-xs">
+                  {v.num}
+                </div>
+              </div>
+
+              <!-- Value Title -->
+              <h3 class="font-nunito font-bold text-2xl sm:text-[26px] text-slate-900 tracking-tight leading-snug mb-3">
+                {v.title}
+              </h3>
+
+              <!-- Description -->
+              <p class="text-xs sm:text-[13.5px] text-slate-600 leading-relaxed font-normal">
+                {v.desc}
+              </p>
+            </div>
+
+            <!-- Bottom Progress Track -->
+            <div class="pt-6 border-t border-slate-100/80 flex items-center justify-between text-[11px] font-bold text-slate-400 group-hover:text-slate-600 transition-colors tracking-wider uppercase relative z-10">
+              <span>FLECK PILLAR</span>
+              <div class="w-9 h-1.5 rounded-full bg-slate-200 overflow-hidden relative">
+                <div class="h-full bg-[#3D2E61] rounded-full w-4 group-hover:w-full transition-all duration-300 ease-out"></div>
+              </div>
+            </div>
+
+          </div>
+        )
+      ))}
+    </div>
+
+  </div>
+</section>

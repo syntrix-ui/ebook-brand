@@ -1,0 +1,45 @@
+---
+// PublishedWorks.astro - From Manuscript To Bestseller Section
+import PublishedWorksCarousel from './PublishedWorksCarousel';
+---
+
+<section class="w-full bg-[#F5F4F7] py-16 sm:py-24 text-slate-900 border-t border-slate-200/60 font-montserrat">
+  <div class="max-w-[1400px] mx-auto px-4 sm:px-6 text-center">
+    
+    <!-- Section Header -->
+    <div class="max-w-3xl mx-auto text-center space-y-2 mb-12 sm:mb-16">
+      
+      <!-- Main Headline Part 1 -->
+      <h2 class="font-nunito font-bold text-3xl sm:text-5xl lg:text-[52px] leading-tight text-[#111111]">
+        From Manuscript To Bestseller
+      </h2>
+
+      <!-- Main Headline Part 2 (Yellow #F6C900) -->
+      <h2 class="font-nunito font-bold text-3xl sm:text-5xl lg:text-[52px] leading-tight text-[#F6C900]">
+        See Our Published Works
+      </h2>
+
+      <!-- Subtitle Description Paragraph -->
+      <p class="font-montserrat text-[#847C7C] text-sm sm:text-base leading-relaxed max-w-xl mx-auto pt-2 font-normal">
+        Take inspiration from recent titles we've helped publish, rank on bestseller lists, and reach passionate readers across the globe.
+      </p>
+
+    </div>
+
+    <!-- Interactive Carousel (Auto 4-sec step + Manual Next/Prev Controls) -->
+    <div class="mb-12">
+      <PublishedWorksCarousel client:load />
+    </div>
+
+    <!-- Bottom Yellow Call-To-Action Button -->
+    <div class="flex justify-center pt-2">
+      <a 
+        href="/contact" 
+        class="inline-flex items-center justify-center px-8 sm:px-10 py-3.5 bg-[#F6C900] text-slate-950 font-bold text-sm sm:text-base rounded-full shadow-lg hover:shadow-xl hover:bg-[#e0b700] active:scale-[0.99] transition-all duration-200 cursor-pointer"
+      >
+        Become Our Next Published Author
+      </a>
+    </div>
+
+  </div>
+</section>

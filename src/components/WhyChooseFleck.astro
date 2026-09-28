@@ -1,0 +1,90 @@
+---
+// WhyChooseFleck.astro - Why Authors Choose Fleck Publisher Section with Woman Reading Book
+interface Props {
+  title?: string;
+  points?: Array<{
+    title: string;
+    desc: string;
+  }>;
+  btnText?: string;
+  authorImg?: string;
+}
+
+const defaultPoints = [
+  {
+    title: "You get fast, error-free publishing.",
+    desc: "We format, validate, and upload your files to ensure a frictionless publishing journey so your book goes live without the guesswork."
+  },
+  {
+    title: "You stay in control of everything.",
+    desc: "We set up your publishing accounts. You own the dashboard, the royalties, the rights, and the reader data start to finish."
+  },
+  {
+    title: "You publish everywhere, without repeating the work.",
+    desc: "We distribute your ebook across Amazon, Apple Books, Google Books, and more—from one master file, managed by one team."
+  },
+  {
+    title: "You launch with strategy.",
+    desc: "We optimize metadata, categories, and pricing to help your book get discovered, ranked, and bought, not buried, on the wrong shelf."
+  }
+];
+
+const {
+  title = "Why Authors Choose Fleck Publisher’s eBook Publishing Services",
+  points = defaultPoints,
+  btnText = "Start Your Book",
+  authorImg = "/services/person-1.png"
+} = Astro.props;
+---
+
+<section class="w-full bg-white pt-16 sm:pt-24 pb-0 text-slate-900 font-montserrat border-t border-slate-100 overflow-hidden">
+  <div class="max-w-[1350px] mx-auto px-4 sm:px-6">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-end">
+      
+      <!-- Left Column: Copy & Value Propositions -->
+      <div class="lg:col-span-6 space-y-6 pb-12 sm:pb-20 lg:pb-24">
+        
+        <!-- Main Headline in Purple -->
+        <h2 class="font-nunito font-bold text-3xl sm:text-4xl lg:text-[42px] leading-tight text-[#3D2E61] tracking-tight">
+          {title}
+        </h2>
+
+        <!-- 4 Text Points -->
+        <div class="space-y-5 pt-2">
+          {points.map((p) => (
+            <div class="space-y-1">
+              <h3 class="font-montserrat font-semibold text-sm sm:text-base text-slate-800">
+                {p.title}
+              </h3>
+              <p class="text-xs sm:text-[13px] text-slate-500 font-normal leading-relaxed">
+                {p.desc}
+              </p>
+            </div>
+          ))}
+        </div>
+
+        <!-- CTA Button -->
+        <div class="pt-2">
+          <a 
+            href="#book-consultation" 
+            class="inline-flex items-center justify-center px-6 py-2.5 bg-[#3D2E61] hover:bg-[#4d3a7a] active:scale-[0.99] text-white font-bold text-xs rounded-lg shadow-sm transition-all duration-200 cursor-pointer"
+          >
+            {btnText}
+          </a>
+        </div>
+
+      </div>
+
+      <!-- Right Column: Woman Reading Book Image Touching Next Component at Bottom -->
+      <div class="lg:col-span-6 flex justify-center lg:justify-end items-end self-end">
+        <img 
+          src={authorImg} 
+          alt={title} 
+          class="w-full max-w-[520px] sm:max-w-[600px] lg:max-w-[680px] xl:max-w-[750px] h-auto object-contain block select-none -mb-1 align-bottom"
+          loading="lazy"
+        />
+      </div>
+
+    </div>
+  </div>
+</section>

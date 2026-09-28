@@ -1,0 +1,9 @@
+---
+// proofreading.astro - Proofreading Service Page
+import ServicePageTemplate from '../components/ServicePageTemplate.astro';
+import { getServiceData } from '../data/servicesData';
+
+const service = getServiceData('proofreading');
+---
+
+<ServicePageTemplate service={service} />

@@ -1,0 +1,9 @@
+---
+// retail-ready-file-upload.astro - Retail-Ready File Upload Service Page
+import ServicePageTemplate from '../components/ServicePageTemplate.astro';
+import { getServiceData } from '../data/servicesData';
+
+const service = getServiceData('retail-ready-file-upload');
+---
+
+<ServicePageTemplate service={service} />

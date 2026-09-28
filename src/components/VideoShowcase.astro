@@ -1,0 +1,419 @@
+---
+// VideoShowcase.astro - Your Book Deserves To Be Seen And Celebrated Section
+---
+
+<section class="w-full bg-[#3D2E61] py-16 sm:py-24 text-white font-montserrat relative overflow-hidden">
+  <div class="max-w-[1300px] mx-auto px-4 sm:px-6 text-center">
+    
+    <!-- Section Header -->
+    <div class="max-w-3xl mx-auto space-y-3 mb-10 sm:mb-12">
+      
+      <!-- Main Heading -->
+      <h2 class="font-nunito font-bold text-3xl sm:text-5xl lg:text-[50px] leading-tight text-white">
+        Your Book Deserves To Be Seen And Celebrated
+      </h2>
+
+      <!-- Subheading -->
+      <h3 class="font-montserrat font-semibold text-lg sm:text-xl text-purple-100/90">
+        Fleck Publisher Supports Writing Enthusiasts In Their Journeys:
+      </h3>
+
+      <!-- Description Paragraph -->
+      <p class="font-montserrat text-purple-200/70 text-sm sm:text-base leading-relaxed max-w-xl mx-auto font-normal">
+        Watch real author spotlights, insightful publishing breakdowns, and celebratory book trailer premieres that bring exceptional literature into the limelight.
+      </p>
+
+    </div>
+
+    <!-- Video Showcase Player Container -->
+    <div 
+      id="video-player-container" 
+      tabindex="0"
+      class="max-w-[1180px] xl:max-w-[1240px] mx-auto relative rounded-[24px] sm:rounded-[32px] overflow-hidden shadow-2xl border border-white/20 bg-slate-950 group select-none focus:outline-none focus:ring-2 focus:ring-purple-400/50"
+    >
+      
+      <!-- Video Element -->
+      <div class="relative w-full aspect-[16/9] overflow-hidden bg-black flex items-center justify-center">
+        <video 
+          id="showcase-video"
+          src="/maya-brooks-fleck.mp4" 
+          poster="/maya-brooks-poster.jpg"
+          preload="metadata"
+          playsinline
+          class="w-full h-full object-cover cursor-pointer block"
+        >
+          Your browser does not support the video tag.
+        </video>
+
+        <!-- Big Center Play Button Overlay -->
+        <button 
+          id="center-play-btn"
+          type="button"
+          aria-label="Play Video"
+          class="absolute inset-0 flex items-center justify-center bg-black/25 hover:bg-black/15 transition-all duration-300 cursor-pointer z-20 group/btn"
+        >
+          <div class="relative flex items-center justify-center">
+            <!-- Pulsing Ring -->
+            <span class="absolute w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-white/20 animate-ping opacity-75"></span>
+            <!-- Button Circle -->
+            <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-white/95 text-[#3D2E61] shadow-2xl flex items-center justify-center group-hover/btn:scale-110 active:scale-95 transition-all duration-300 border-4 border-white/50">
+              <svg class="w-8 h-8 sm:w-10 sm:h-10 fill-current translate-x-0.5" viewBox="0 0 24 24">
+                <path d="M8 5v14l11-7z" />
+              </svg>
+            </div>
+          </div>
+        </button>
+
+        <!-- Interactive Custom Controls Bar Bottom -->
+        <div 
+          id="video-controls-bar"
+          class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/95 via-black/70 to-transparent pt-10 pb-3 sm:pb-4 px-3 sm:px-6 flex flex-col gap-2 z-20 transition-opacity duration-300"
+        >
+          <!-- Timeline / Scrubber Track -->
+          <div 
+            id="timeline-container"
+            class="relative w-full h-3 group/timeline cursor-pointer flex items-center"
+          >
+            <!-- Background Bar -->
+            <div class="w-full h-1 group-hover/timeline:h-2 bg-white/30 rounded-full overflow-hidden transition-all duration-150 relative">
+              <!-- Buffer progress -->
+              <div id="buffer-bar" class="absolute top-0 left-0 h-full bg-white/20 rounded-full transition-all duration-200" style="width: 0%"></div>
+              <!-- Play progress -->
+              <div id="progress-bar" class="absolute top-0 left-0 h-full bg-gradient-to-r from-purple-400 to-indigo-400 rounded-full" style="width: 0%"></div>
+            </div>
+            <!-- Scrubber Thumb -->
+            <div 
+              id="scrubber-thumb" 
+              class="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-3.5 h-3.5 bg-white rounded-full shadow-lg opacity-0 group-hover/timeline:opacity-100 transition-opacity pointer-events-none"
+              style="left: 0%"
+            ></div>
+          </div>
+
+          <!-- Bottom Controls Row -->
+          <div class="flex items-center justify-between text-white text-xs sm:text-sm font-medium">
+            
+            <!-- Left Controls: Play/Pause, Volume, Time -->
+            <div class="flex items-center gap-3 sm:gap-4">
+              <!-- Play/Pause Toggle -->
+              <button 
+                id="play-pause-btn" 
+                type="button"
+                aria-label="Play or Pause" 
+                class="hover:text-purple-300 transition-colors p-1"
+              >
+                <!-- Play Icon -->
+                <svg id="ctrl-play-icon" class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                  <path d="M8 5v14l11-7z" />
+                </svg>
+                <!-- Pause Icon (hidden by default) -->
+                <svg id="ctrl-pause-icon" class="w-5 h-5 fill-current hidden" viewBox="0 0 24 24">
+                  <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
+                </svg>
+              </button>
+
+              <!-- Volume Control -->
+              <div class="flex items-center gap-2 group/vol">
+                <button 
+                  id="volume-btn" 
+                  type="button"
+                  aria-label="Mute or Unmute" 
+                  class="hover:text-purple-300 transition-colors p-1"
+                >
+                  <!-- Volume High -->
+                  <svg id="vol-high-icon" class="w-5 h-5 stroke-current fill-none" viewBox="0 0 24 24" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.536 8.464a5 5 0 010 7.072M17.95 6.05a8 8 0 010 11.314M6.5 9H3v6h3.5l4.5 4.5V4.5L6.5 9z" />
+                  </svg>
+                  <!-- Volume Muted (hidden by default) -->
+                  <svg id="vol-muted-icon" class="w-5 h-5 stroke-current fill-none hidden" viewBox="0 0 24 24" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2" />
+                  </svg>
+                </button>
+                <input 
+                  id="volume-slider" 
+                  type="range" 
+                  min="0" 
+                  max="1" 
+                  step="0.05" 
+                  value="1" 
+                  class="w-14 sm:w-20 h-1 accent-purple-400 bg-white/30 rounded-lg cursor-pointer transition-all"
+                  aria-label="Volume slider"
+                />
+              </div>
+
+              <!-- Time Counter -->
+              <span id="time-display" class="text-white/90 font-mono text-xs sm:text-sm tracking-wide">
+                0:00 / 0:50
+              </span>
+            </div>
+
+            <!-- Right Controls: Maya Brooks Badge & Fullscreen -->
+            <div class="flex items-center gap-3 text-white/90">
+              <span class="hidden sm:inline-block text-[11px] font-semibold tracking-wider uppercase text-purple-200/80 bg-white/10 px-2.5 py-1 rounded-full border border-white/10">
+                Maya Brooks • Spotlight
+              </span>
+
+              <!-- Fullscreen Button -->
+              <button 
+                id="fullscreen-btn" 
+                type="button"
+                aria-label="Toggle Fullscreen" 
+                class="hover:text-purple-300 transition-colors p-1"
+              >
+                <!-- Expand Icon -->
+                <svg id="fs-expand-icon" class="w-5 h-5 stroke-current fill-none" viewBox="0 0 24 24" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M4 8V4m0 0h4M4 4l5 5m11-5h-4m4 0v4m0-4l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
+                </svg>
+                <!-- Minimize Icon -->
+                <svg id="fs-compress-icon" class="w-5 h-5 stroke-current fill-none hidden" viewBox="0 0 24 24" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M4 14h6m0 0v6m0-6L3 21m17-7h-6m0 0v6m0-6l7 7M10 4v6m0 0H4m6 0L3 3m10 7h6m0 0V4m0 6l7-7" />
+                </svg>
+              </button>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<script>
+  function initVideoPlayer() {
+    const container = document.getElementById('video-player-container');
+    const video = document.getElementById('showcase-video') as HTMLVideoElement | null;
+    const centerPlayBtn = document.getElementById('center-play-btn');
+    const playPauseBtn = document.getElementById('play-pause-btn');
+    const ctrlPlayIcon = document.getElementById('ctrl-play-icon');
+    const ctrlPauseIcon = document.getElementById('ctrl-pause-icon');
+    const volumeBtn = document.getElementById('volume-btn');
+    const volHighIcon = document.getElementById('vol-high-icon');
+    const volMutedIcon = document.getElementById('vol-muted-icon');
+    const volumeSlider = document.getElementById('volume-slider') as HTMLInputElement | null;
+    const timeDisplay = document.getElementById('time-display');
+    const timeline = document.getElementById('timeline-container');
+    const progressBar = document.getElementById('progress-bar');
+    const bufferBar = document.getElementById('buffer-bar');
+    const scrubberThumb = document.getElementById('scrubber-thumb');
+    const fullscreenBtn = document.getElementById('fullscreen-btn');
+    const fsExpandIcon = document.getElementById('fs-expand-icon');
+    const fsCompressIcon = document.getElementById('fs-compress-icon');
+    const controlsBar = document.getElementById('video-controls-bar');
+
+    if (!video || !container) return;
+
+    let hideControlsTimeout: number | undefined;
+
+    // Helper: format time m:ss
+    function formatTime(seconds: number): string {
+      if (isNaN(seconds) || seconds < 0) return '0:00';
+      const mins = Math.floor(seconds / 60);
+      const secs = Math.floor(seconds % 60);
+      return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
+    }
+
+    // Update play/pause UI state
+    function updatePlayState() {
+      if (!video) return;
+      if (video.paused) {
+        ctrlPlayIcon?.classList.remove('hidden');
+        ctrlPauseIcon?.classList.add('hidden');
+        centerPlayBtn?.classList.remove('opacity-0', 'pointer-events-none');
+        showControls();
+      } else {
+        ctrlPlayIcon?.classList.add('hidden');
+        ctrlPauseIcon?.classList.remove('hidden');
+        centerPlayBtn?.classList.add('opacity-0', 'pointer-events-none');
+        startHideControlsTimer();
+      }
+    }
+
+    // Toggle Play/Pause
+    function togglePlay() {
+      if (!video) return;
+      if (video.paused || video.ended) {
+        video.play().catch(() => {});
+      } else {
+        video.pause();
+      }
+      updatePlayState();
+    }
+
+    // Update volume UI
+    function updateVolumeState() {
+      if (!video) return;
+      if (video.muted || video.volume === 0) {
+        volHighIcon?.classList.add('hidden');
+        volMutedIcon?.classList.remove('hidden');
+        if (volumeSlider) volumeSlider.value = '0';
+      } else {
+        volHighIcon?.classList.remove('hidden');
+        volMutedIcon?.classList.add('hidden');
+        if (volumeSlider) volumeSlider.value = video.volume.toString();
+      }
+    }
+
+    // Toggle Mute
+    function toggleMute() {
+      if (!video) return;
+      video.muted = !video.muted;
+      if (!video.muted && video.volume === 0) {
+        video.volume = 1;
+      }
+      updateVolumeState();
+    }
+
+    // Show / Hide Controls
+    function showControls() {
+      controlsBar?.classList.remove('opacity-0');
+      clearTimeout(hideControlsTimeout);
+    }
+
+    function startHideControlsTimer() {
+      clearTimeout(hideControlsTimeout);
+      if (video && !video.paused) {
+        hideControlsTimeout = window.setTimeout(() => {
+          controlsBar?.classList.add('opacity-0');
+        }, 2500);
+      }
+    }
+
+    // Fullscreen Toggle
+    function toggleFullscreen() {
+      if (!container) return;
+      if (!document.fullscreenElement) {
+        container.requestFullscreen().catch(() => {});
+      } else {
+        document.exitFullscreen().catch(() => {});
+      }
+    }
+
+    function updateFullscreenIcons() {
+      if (document.fullscreenElement) {
+        fsExpandIcon?.classList.add('hidden');
+        fsCompressIcon?.classList.remove('hidden');
+      } else {
+        fsExpandIcon?.classList.remove('hidden');
+        fsCompressIcon?.classList.add('hidden');
+      }
+    }
+
+    // Event Listeners
+    centerPlayBtn?.addEventListener('click', togglePlay);
+    video.addEventListener('click', togglePlay);
+    playPauseBtn?.addEventListener('click', togglePlay);
+
+    video.addEventListener('play', updatePlayState);
+    video.addEventListener('pause', updatePlayState);
+    video.addEventListener('ended', () => {
+      updatePlayState();
+      showControls();
+    });
+
+    // Time update & Progress
+    video.addEventListener('timeupdate', () => {
+      if (!video) return;
+      const current = video.currentTime;
+      const total = video.duration || 50;
+      const percent = (current / total) * 100;
+
+      if (progressBar) progressBar.style.width = `${percent}%`;
+      if (scrubberThumb) scrubberThumb.style.left = `${percent}%`;
+      if (timeDisplay) timeDisplay.textContent = `${formatTime(current)} / ${formatTime(total)}`;
+    });
+
+    // Loaded metadata
+    video.addEventListener('loadedmetadata', () => {
+      if (!video) return;
+      if (timeDisplay) timeDisplay.textContent = `${formatTime(video.currentTime)} / ${formatTime(video.duration)}`;
+    });
+
+    // Progress buffer
+    video.addEventListener('progress', () => {
+      if (!video || !video.duration || video.buffered.length === 0) return;
+      const bufferedEnd = video.buffered.end(video.buffered.length - 1);
+      const percent = (bufferedEnd / video.duration) * 100;
+      if (bufferBar) bufferBar.style.width = `${percent}%`;
+    });
+
+    // Seek / Timeline click & drag
+    let isSeeking = false;
+    function seek(e: MouseEvent) {
+      if (!timeline || !video) return;
+      const rect = timeline.getBoundingClientRect();
+      const pos = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+      const targetTime = pos * (video.duration || 50);
+      video.currentTime = targetTime;
+      const percent = pos * 100;
+      if (progressBar) progressBar.style.width = `${percent}%`;
+      if (scrubberThumb) scrubberThumb.style.left = `${percent}%`;
+    }
+
+    timeline?.addEventListener('mousedown', (e) => {
+      isSeeking = true;
+      seek(e);
+    });
+
+    window.addEventListener('mousemove', (e) => {
+      if (isSeeking) seek(e);
+    });
+
+    window.addEventListener('mouseup', () => {
+      if (isSeeking) isSeeking = false;
+    });
+
+    // Volume
+    volumeBtn?.addEventListener('click', toggleMute);
+    volumeSlider?.addEventListener('input', (e) => {
+      if (!video) return;
+      const val = parseFloat((e.target as HTMLInputElement).value);
+      video.volume = val;
+      video.muted = val === 0;
+      updateVolumeState();
+    });
+
+    // Fullscreen
+    fullscreenBtn?.addEventListener('click', toggleFullscreen);
+    video.addEventListener('dblclick', toggleFullscreen);
+    document.addEventListener('fullscreenchange', updateFullscreenIcons);
+
+    // Auto-hide controls on mouse idle
+    container.addEventListener('mousemove', () => {
+      showControls();
+      startHideControlsTimer();
+    });
+    container.addEventListener('mouseleave', () => {
+      if (video && !video.paused) {
+        controlsBar?.classList.add('opacity-0');
+      }
+    });
+
+    // Keyboard navigation when player is focused
+    container.addEventListener('keydown', (e) => {
+      if (e.key === ' ' || e.key === 'k') {
+        e.preventDefault();
+        togglePlay();
+      } else if (e.key === 'f') {
+        e.preventDefault();
+        toggleFullscreen();
+      } else if (e.key === 'm') {
+        e.preventDefault();
+        toggleMute();
+      } else if (e.key === 'ArrowRight') {
+        if (video) video.currentTime = Math.min(video.duration, video.currentTime + 5);
+      } else if (e.key === 'ArrowLeft') {
+        if (video) video.currentTime = Math.max(0, video.currentTime - 5);
+      }
+    });
+  }
+
+  // Initialize on DOMContentLoaded and on page load
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initVideoPlayer);
+  } else {
+    initVideoPlayer();
+  }
+</script>

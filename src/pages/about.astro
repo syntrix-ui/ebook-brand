@@ -1,0 +1,74 @@
+---
+// about.astro - Dedicated About Us Page matching Figma mockup exactly
+import '../styles/globals.css';
+import Header from '../components/Header.astro';
+import AboutUsHero from '../components/AboutUsHero.astro';
+import AboutWhatWeDo from '../components/AboutWhatWeDo.astro';
+import AboutCoreValues from '../components/AboutCoreValues.astro';
+import AboutPeoplePromises from '../components/AboutPeoplePromises.astro';
+import AboutMissionBanner from '../components/AboutMissionBanner.astro';
+import AboutAgileProcess from '../components/AboutAgileProcess.astro';
+import AboutImpact from '../components/AboutImpact.astro';
+import AboutCtaBanner from '../components/AboutCtaBanner.astro';
+import SuccessStories from '../components/SuccessStories.astro';
+import Roadmap from '../components/Roadmap.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<html lang="en" class="dark">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content="About Us | Fleck Publisher - Our Mission, Core Values, Agile Process, and Impact" />
+    <title>About Us - Fleck Publisher's Mission & Values</title>
+
+    <!-- Google Fonts Montserrat & Nunito Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300..900;1,300..900&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap" rel="stylesheet">
+  </head>
+  <body class="min-h-screen bg-[#0a080d] text-slate-100 font-montserrat selection:bg-[#3D2E61] selection:text-white relative overflow-x-hidden">
+    
+    <!-- Header / Navigation Bar with Mega Menu -->
+    <Header />
+
+    <!-- Main Content Area arranged in exact sequence matching Figma design -->
+    <main class="w-full">
+      <!-- Section 1: Fleck Publisher's Mission Hero -->
+      <AboutUsHero />
+
+      <!-- Section 2: What we do (5-Book Floating Collage) -->
+      <AboutWhatWeDo />
+
+      <!-- Section 3: Our Core Values (6-Card Alternating Grid) -->
+      <AboutCoreValues />
+
+      <!-- Section 4: Our People and Promises (3D Hardcover Mockup) -->
+      <AboutPeoplePromises />
+
+      <!-- Section 5: Deep Purple Mission Banner -->
+      <AboutMissionBanner />
+
+      <!-- Section 6: Our 4-Step Agile Approach -->
+      <AboutAgileProcess />
+
+      <!-- Section 7: Our Impact (With Woman Holding Book touching bottom edge) -->
+      <AboutImpact />
+
+      <!-- Section 8: Narrow Dark Purple CTA Strip Banner -->
+      <AboutCtaBanner />
+
+      <!-- Section 9: Success Stories Carousel -->
+      <SuccessStories />
+
+      <!-- Section 10: Have An Amazing Idea? Roadmap Form -->
+      <Roadmap />
+    </main>
+
+    <!-- Section 11: Footer -->
+    <Footer />
+
+  </body>
+</html>

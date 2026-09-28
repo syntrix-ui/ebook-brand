@@ -1,0 +1,387 @@
+---
+// VideoPlayer.astro - Modular and Reusable High-Quality Video Player
+interface Props {
+  videoSrc?: string;
+  posterSrc?: string;
+  badgeText?: string;
+}
+
+const {
+  videoSrc = "/maya-brooks-fleck.mp4",
+  posterSrc = "/maya-brooks-poster.jpg",
+  badgeText = "Maya Brooks • Spotlight"
+} = Astro.props;
+---
+
+<div 
+  tabindex="0"
+  class="video-player-container max-w-[1100px] xl:max-w-[1180px] mx-auto relative rounded-[24px] sm:rounded-[32px] overflow-hidden shadow-2xl border border-white/20 bg-slate-950 group select-none focus:outline-none focus:ring-2 focus:ring-purple-400/50"
+>
+  <!-- Video Aspect Frame -->
+  <div class="relative w-full aspect-[16/9] overflow-hidden bg-black flex items-center justify-center">
+    <video 
+      src={videoSrc} 
+      poster={posterSrc}
+      preload="metadata"
+      playsinline
+      class="showcase-video w-full h-full object-cover cursor-pointer block"
+    >
+      Your browser does not support the video tag.
+    </video>
+
+    <!-- Big Center Play Button Overlay -->
+    <button 
+      type="button"
+      aria-label="Play Video"
+      class="center-play-btn absolute inset-0 flex items-center justify-center bg-black/25 hover:bg-black/15 transition-all duration-300 cursor-pointer z-20 group/btn"
+    >
+      <div class="relative flex items-center justify-center">
+        <!-- Pulsing Ring -->
+        <span class="absolute w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-white/20 animate-ping opacity-75"></span>
+        <!-- Button Circle -->
+        <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-white/95 text-[#3D2E61] shadow-2xl flex items-center justify-center group-hover/btn:scale-110 active:scale-95 transition-all duration-300 border-4 border-white/50">
+          <svg class="w-8 h-8 sm:w-10 sm:h-10 fill-current translate-x-0.5" viewBox="0 0 24 24">
+            <path d="M8 5v14l11-7z" />
+          </svg>
+        </div>
+      </div>
+    </button>
+
+    <!-- Interactive Custom Controls Bar Bottom -->
+    <div 
+      class="video-controls-bar absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/95 via-black/70 to-transparent pt-10 pb-3 sm:pb-4 px-3 sm:px-6 flex flex-col gap-2 z-20 transition-opacity duration-300"
+    >
+      <!-- Timeline / Scrubber Track -->
+      <div 
+        class="timeline-container relative w-full h-3 group/timeline cursor-pointer flex items-center"
+      >
+        <!-- Background Bar -->
+        <div class="w-full h-1 group-hover/timeline:h-2 bg-white/30 rounded-full overflow-hidden transition-all duration-150 relative">
+          <!-- Buffer progress -->
+          <div class="buffer-bar absolute top-0 left-0 h-full bg-white/20 rounded-full transition-all duration-200" style="width: 0%"></div>
+          <!-- Play progress -->
+          <div class="progress-bar absolute top-0 left-0 h-full bg-gradient-to-r from-purple-400 to-indigo-400 rounded-full" style="width: 0%"></div>
+        </div>
+        <!-- Scrubber Thumb -->
+        <div 
+          class="scrubber-thumb absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-3.5 h-3.5 bg-white rounded-full shadow-lg opacity-0 group-hover/timeline:opacity-100 transition-opacity pointer-events-none"
+          style="left: 0%"
+        ></div>
+      </div>
+
+      <!-- Bottom Controls Row -->
+      <div class="flex items-center justify-between text-white text-xs sm:text-sm font-medium">
+        
+        <!-- Left Controls: Play/Pause, Volume, Time -->
+        <div class="flex items-center gap-3 sm:gap-4">
+          <!-- Play/Pause Toggle -->
+          <button 
+            type="button"
+            aria-label="Play or Pause" 
+            class="play-pause-btn hover:text-purple-300 transition-colors p-1"
+          >
+            <!-- Play Icon -->
+            <svg class="ctrl-play-icon w-5 h-5 fill-current" viewBox="0 0 24 24">
+              <path d="M8 5v14l11-7z" />
+            </svg>
+            <!-- Pause Icon (hidden by default) -->
+            <svg class="ctrl-pause-icon w-5 h-5 fill-current hidden" viewBox="0 0 24 24">
+              <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
+            </svg>
+          </button>
+
+          <!-- Volume Control -->
+          <div class="flex items-center gap-2 group/vol">
+            <button 
+              type="button"
+              aria-label="Mute or Unmute" 
+              class="volume-btn hover:text-purple-300 transition-colors p-1"
+            >
+              <!-- Volume High -->
+              <svg class="vol-high-icon w-5 h-5 stroke-current fill-none" viewBox="0 0 24 24" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15.536 8.464a5 5 0 010 7.072M17.95 6.05a8 8 0 010 11.314M6.5 9H3v6h3.5l4.5 4.5V4.5L6.5 9z" />
+              </svg>
+              <!-- Volume Muted (hidden by default) -->
+              <svg class="vol-muted-icon w-5 h-5 stroke-current fill-none hidden" viewBox="0 0 24 24" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
+                <path stroke-linecap="round" stroke-linejoin="round" d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2" />
+              </svg>
+            </button>
+            <input 
+              type="range" 
+              min="0" 
+              max="1" 
+              step="0.05" 
+              value="1" 
+              class="volume-slider w-14 sm:w-20 h-1 accent-purple-400 bg-white/30 rounded-lg cursor-pointer transition-all"
+              aria-label="Volume slider"
+            />
+          </div>
+
+          <!-- Time Counter -->
+          <span class="time-display text-white/90 font-mono text-xs sm:text-sm tracking-wide">
+            0:00 / 0:50
+          </span>
+        </div>
+
+        <!-- Right Controls: Badge & Fullscreen -->
+        <div class="flex items-center gap-3 text-white/90">
+          <span class="hidden sm:inline-block text-[11px] font-semibold tracking-wider uppercase text-purple-200/80 bg-white/10 px-2.5 py-1 rounded-full border border-white/10">
+            {badgeText}
+          </span>
+
+          <!-- Fullscreen Button -->
+          <button 
+            type="button"
+            aria-label="Toggle Fullscreen" 
+            class="fullscreen-btn hover:text-purple-300 transition-colors p-1"
+          >
+            <!-- Expand Icon -->
+            <svg class="fs-expand-icon w-5 h-5 stroke-current fill-none" viewBox="0 0 24 24" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4 8V4m0 0h4M4 4l5 5m11-5h-4m4 0v4m0-4l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
+            </svg>
+            <!-- Minimize Icon -->
+            <svg class="fs-compress-icon w-5 h-5 stroke-current fill-none hidden" viewBox="0 0 24 24" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4 14h6m0 0v6m0-6L3 21m17-7h-6m0 0v6m0-6l7 7M10 4v6m0 0H4m6 0L3 3m10 7h6m0 0V4m0 6l7-7" />
+            </svg>
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  function setupVideoPlayers() {
+    const containers = document.querySelectorAll<HTMLElement>('.video-player-container');
+    
+    containers.forEach((container) => {
+      if (container.dataset.ready === 'true') return;
+      container.dataset.ready = 'true';
+
+      const video = container.querySelector<HTMLVideoElement>('.showcase-video');
+      const centerPlayBtn = container.querySelector<HTMLElement>('.center-play-btn');
+      const playPauseBtn = container.querySelector<HTMLElement>('.play-pause-btn');
+      const ctrlPlayIcon = container.querySelector<HTMLElement>('.ctrl-play-icon');
+      const ctrlPauseIcon = container.querySelector<HTMLElement>('.ctrl-pause-icon');
+      const volumeBtn = container.querySelector<HTMLElement>('.volume-btn');
+      const volHighIcon = container.querySelector<HTMLElement>('.vol-high-icon');
+      const volMutedIcon = container.querySelector<HTMLElement>('.vol-muted-icon');
+      const volumeSlider = container.querySelector<HTMLInputElement>('.volume-slider');
+      const timeDisplay = container.querySelector<HTMLElement>('.time-display');
+      const timeline = container.querySelector<HTMLElement>('.timeline-container');
+      const progressBar = container.querySelector<HTMLElement>('.progress-bar');
+      const bufferBar = container.querySelector<HTMLElement>('.buffer-bar');
+      const scrubberThumb = container.querySelector<HTMLElement>('.scrubber-thumb');
+      const fullscreenBtn = container.querySelector<HTMLElement>('.fullscreen-btn');
+      const fsExpandIcon = container.querySelector<HTMLElement>('.fs-expand-icon');
+      const fsCompressIcon = container.querySelector<HTMLElement>('.fs-compress-icon');
+      const controlsBar = container.querySelector<HTMLElement>('.video-controls-bar');
+
+      if (!video) return;
+
+      let hideControlsTimeout: number | undefined;
+
+      function formatTime(seconds: number): string {
+        if (isNaN(seconds) || seconds < 0) return '0:00';
+        const mins = Math.floor(seconds / 60);
+        const secs = Math.floor(seconds % 60);
+        return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
+      }
+
+      function updatePlayState() {
+        if (!video) return;
+        if (video.paused) {
+          ctrlPlayIcon?.classList.remove('hidden');
+          ctrlPauseIcon?.classList.add('hidden');
+          centerPlayBtn?.classList.remove('opacity-0', 'pointer-events-none');
+          showControls();
+        } else {
+          ctrlPlayIcon?.classList.add('hidden');
+          ctrlPauseIcon?.classList.remove('hidden');
+          centerPlayBtn?.classList.add('opacity-0', 'pointer-events-none');
+          startHideControlsTimer();
+        }
+      }
+
+      function togglePlay() {
+        if (!video) return;
+        if (video.paused || video.ended) {
+          video.play().catch(() => {});
+        } else {
+          video.pause();
+        }
+        updatePlayState();
+      }
+
+      function updateVolumeState() {
+        if (!video) return;
+        if (video.muted || video.volume === 0) {
+          volHighIcon?.classList.add('hidden');
+          volMutedIcon?.classList.remove('hidden');
+          if (volumeSlider) volumeSlider.value = '0';
+        } else {
+          volHighIcon?.classList.remove('hidden');
+          volMutedIcon?.classList.add('hidden');
+          if (volumeSlider) volumeSlider.value = video.volume.toString();
+        }
+      }
+
+      function toggleMute() {
+        if (!video) return;
+        video.muted = !video.muted;
+        if (!video.muted && video.volume === 0) {
+          video.volume = 1;
+        }
+        updateVolumeState();
+      }
+
+      function showControls() {
+        if (!controlsBar) return;
+        controlsBar.style.opacity = '1';
+        clearTimeout(hideControlsTimeout);
+      }
+
+      function startHideControlsTimer() {
+        if (!video || video.paused) return;
+        clearTimeout(hideControlsTimeout);
+        hideControlsTimeout = window.setTimeout(() => {
+          if (controlsBar && !video.paused) {
+            controlsBar.style.opacity = '0';
+          }
+        }, 2500);
+      }
+
+      function toggleFullscreen() {
+        if (!document.fullscreenElement) {
+          container.requestFullscreen().catch(() => {});
+        } else {
+          document.exitFullscreen().catch(() => {});
+        }
+      }
+
+      function updateFullscreenUI() {
+        const isFs = !!document.fullscreenElement;
+        if (isFs) {
+          fsExpandIcon?.classList.add('hidden');
+          fsCompressIcon?.classList.remove('hidden');
+        } else {
+          fsExpandIcon?.classList.remove('hidden');
+          fsCompressIcon?.classList.add('hidden');
+        }
+      }
+
+      // Event listeners
+      centerPlayBtn?.addEventListener('click', togglePlay);
+      playPauseBtn?.addEventListener('click', togglePlay);
+      video.addEventListener('click', togglePlay);
+
+      video.addEventListener('play', updatePlayState);
+      video.addEventListener('pause', updatePlayState);
+      video.addEventListener('ended', () => {
+        updatePlayState();
+        if (progressBar) progressBar.style.width = '0%';
+        if (scrubberThumb) scrubberThumb.style.left = '0%';
+      });
+
+      video.addEventListener('timeupdate', () => {
+        if (!video) return;
+        const current = video.currentTime;
+        const total = video.duration || 50;
+        const percent = (current / total) * 100;
+
+        if (progressBar) progressBar.style.width = `${percent}%`;
+        if (scrubberThumb) scrubberThumb.style.left = `${percent}%`;
+        if (timeDisplay) timeDisplay.textContent = `${formatTime(current)} / ${formatTime(total)}`;
+      });
+
+      video.addEventListener('loadedmetadata', () => {
+        if (!video) return;
+        if (timeDisplay) timeDisplay.textContent = `${formatTime(video.currentTime)} / ${formatTime(video.duration || 50)}`;
+      });
+
+      video.addEventListener('progress', () => {
+        if (!video || !video.duration || video.buffered.length === 0) return;
+        const bufferedEnd = video.buffered.end(video.buffered.length - 1);
+        const percent = (bufferedEnd / video.duration) * 100;
+        if (bufferBar) bufferBar.style.width = `${percent}%`;
+      });
+
+      function handleTimelineScrub(e: MouseEvent) {
+        if (!timeline || !video) return;
+        const rect = timeline.getBoundingClientRect();
+        const pos = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+        const targetTime = pos * (video.duration || 50);
+        video.currentTime = targetTime;
+        if (progressBar) progressBar.style.width = `${pos * 100}%`;
+        if (scrubberThumb) scrubberThumb.style.left = `${pos * 100}%`;
+      }
+
+      let isDragging = false;
+      timeline?.addEventListener('mousedown', (e) => {
+        isDragging = true;
+        handleTimelineScrub(e);
+      });
+
+      window.addEventListener('mousemove', (e) => {
+        if (isDragging) handleTimelineScrub(e);
+      });
+
+      window.addEventListener('mouseup', () => {
+        isDragging = false;
+      });
+
+      volumeBtn?.addEventListener('click', toggleMute);
+      volumeSlider?.addEventListener('input', (e) => {
+        if (!video) return;
+        const val = parseFloat((e.target as HTMLInputElement).value);
+        video.volume = val;
+        video.muted = val === 0;
+        updateVolumeState();
+      });
+
+      fullscreenBtn?.addEventListener('click', toggleFullscreen);
+      video.addEventListener('dblclick', toggleFullscreen);
+      document.addEventListener('fullscreenchange', updateFullscreenUI);
+
+      container.addEventListener('mousemove', () => {
+        showControls();
+        startHideControlsTimer();
+      });
+
+      container.addEventListener('mouseleave', () => {
+        if (video && !video.paused) {
+          clearTimeout(hideControlsTimeout);
+          hideControlsTimeout = window.setTimeout(() => {
+            if (controlsBar) controlsBar.style.opacity = '0';
+          }, 600);
+        }
+      });
+
+      container.addEventListener('keydown', (e) => {
+        if (e.target !== container && e.target !== video) return;
+        if (e.code === 'Space' || e.code === 'KeyK') {
+          e.preventDefault();
+          togglePlay();
+        } else if (e.code === 'KeyM') {
+          e.preventDefault();
+          toggleMute();
+        } else if (e.code === 'KeyF') {
+          e.preventDefault();
+          toggleFullscreen();
+        } else if (e.code === 'ArrowRight') {
+          e.preventDefault();
+          if (video) video.currentTime = Math.min(video.duration, video.currentTime + 5);
+        } else if (e.code === 'ArrowLeft') {
+          e.preventDefault();
+          if (video) video.currentTime = Math.max(0, video.currentTime - 5);
+        }
+      });
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', setupVideoPlayers);
+  setupVideoPlayers();
+</script>

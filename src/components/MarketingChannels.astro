@@ -1,0 +1,105 @@
+---
+// MarketingChannels.astro - "Where We Market eBooks" 8 cards grid matching Figma mockup
+interface ChannelItem {
+  title: string;
+  desc: string;
+  icon: string;
+}
+
+const channels: ChannelItem[] = [
+  {
+    title: "Amazon Ads & KDP PPC",
+    desc: "Targeted sponsored product placements, competitor ASIN conquesting, and search keyword bidding that capture ready-to-buy readers.",
+    icon: "/marketing/Overlay.png"
+  },
+  {
+    title: "BookTok & TikTok Spark Ads",
+    desc: "Engaging video hooks, aesthetic book unboxings, and paid creator collaborations that trigger organic viral momentum in your genre.",
+    icon: "/marketing/Overlay (1).png"
+  },
+  {
+    title: "Instagram & Bookstagram",
+    desc: "Visual carousel previews, high-aesthetic quote cards, and influencer shoutouts designed to drive profile visits and Amazon clicks.",
+    icon: "/marketing/Overlay (2).png"
+  },
+  {
+    title: "Goodreads & Reader Hubs",
+    desc: "Strategic giveaway campaigns, genre discussion group seeding, and social bookshelf additions to accelerate reader discovery.",
+    icon: "/marketing/Overlay (3).png"
+  },
+  {
+    title: "BookBub & Editorial Blasts",
+    desc: "Featured deals, category newsletter sponsorships, and targeted discount pushes that create rapid bestseller rank surges.",
+    icon: "/marketing/Overlay (4).png"
+  },
+  {
+    title: "Google Search & Display",
+    desc: "High-intent search ads capturing readers looking for books in your niche, combined with dynamic remarketing banners.",
+    icon: "/marketing/Overlay (5).png"
+  },
+  {
+    title: "Podcasts & Literary PR",
+    desc: "Guest appearances on book review podcasts, author interviews, and feature press releases across literary blogs and news outlets.",
+    icon: "/marketing/Overlay (6).png"
+  },
+  {
+    title: "Author Newsletter Swaps",
+    desc: "Cross-promotions with established authors in your subgenre to build your private reader list and maximize launch read-through.",
+    icon: "/marketing/Overlay (1).png"
+  }
+];
+---
+
+<section class="w-full bg-white py-16 sm:py-24 text-slate-900 font-montserrat border-t border-slate-100">
+  <div class="max-w-[1300px] mx-auto px-4 sm:px-6">
+    
+    <!-- Section Header -->
+    <div class="text-center space-y-4 mb-14 sm:mb-20 max-w-3xl mx-auto">
+      <h2 class="font-nunito font-bold text-3xl sm:text-5xl lg:text-[46px] leading-tight text-slate-900 tracking-tight line-clamp-2">
+        Where We Market eBooks
+      </h2>
+      <p class="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal max-w-2xl mx-auto">
+        We deploy multi-channel promotional strategies across the premier digital platforms where book buyers discover their next obsession.
+      </p>
+    </div>
+
+    <!-- 8 Cards Grid (4 per row on desktop, 2 on tablet, 1 on mobile) -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-7">
+      {channels.map((item) => (
+        <div class="bg-white rounded-[24px] p-6 sm:p-7 border border-slate-200/80 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group">
+          <div>
+            <!-- Icon -->
+            <div class="w-14 h-14 rounded-2xl bg-purple-50 flex items-center justify-center mb-6 group-hover:scale-105 transition-transform duration-200">
+              <img 
+                src={item.icon} 
+                alt={item.title} 
+                class="w-8 h-8 object-contain"
+              />
+            </div>
+
+            <!-- Title -->
+            <h3 class="font-nunito font-bold text-lg text-slate-900 mb-3 group-hover:text-[#3D2E61] transition-colors">
+              {item.title}
+            </h3>
+
+            <!-- Description -->
+            <p class="text-xs sm:text-[13px] text-slate-600 leading-relaxed font-normal">
+              {item.desc}
+            </p>
+          </div>
+
+          <!-- CTA Button -->
+          <div class="pt-6">
+            <a 
+              href="/contact" 
+              class="w-full py-2.5 bg-[#3D2E61] hover:bg-[#4d3a7a] active:scale-[0.99] text-white font-bold text-xs rounded-xl shadow-xs text-center transition-all duration-200 block"
+            >
+              Start Your Book
+            </a>
+          </div>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>

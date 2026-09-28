@@ -1,0 +1,9 @@
+---
+// animated-trailers.astro - Animated Trailers Service Page
+import ServicePageTemplate from '../components/ServicePageTemplate.astro';
+import { getServiceData } from '../data/servicesData';
+
+const service = getServiceData('animated-trailers');
+---
+
+<ServicePageTemplate service={service} />

@@ -1,0 +1,110 @@
+---
+// ClaimDiscount.astro - Claim Your Exclusive Author Discount Section matching Figma Inspector
+import CountryPhoneInput from './CountryPhoneInput.astro';
+---
+
+<section class="w-full bg-white py-14 sm:py-20 text-slate-900 font-montserrat">
+  <div class="max-w-[1300px] mx-auto px-4 sm:px-6">
+    
+    <!-- Outer Container matching Figma: Gradient #F5F2FF to #F3F2F8, Radius 37px, Border 1px #C3ABAB -->
+    <div class="w-full bg-gradient-to-r from-[#F5F2FF] to-[#F3F2F8] rounded-[37px] px-6 sm:px-12 py-10 sm:py-14 border border-[#C3ABAB] shadow-sm text-center">
+      
+      <!-- Headline -->
+      <h2 class="font-nunito font-semibold text-2xl sm:text-4xl lg:text-[38px] text-slate-900 leading-tight max-w-3xl mx-auto line-clamp-2">
+        Claim Your Exclusive Author <span class="text-[#FF0000]">Discount</span> Today
+      </h2>
+
+      <!-- Form -->
+      <form id="claim-discount-form" class="mt-8 sm:mt-10 space-y-6">
+        
+        <!-- 4-Column Horizontal Inputs Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          
+          <!-- Input 1: Full Name -->
+          <div>
+            <input 
+              type="text" 
+              placeholder="Full Name*" 
+              required
+              class="w-full bg-white border border-[#C3ABAB]/70 rounded-xl px-4 py-3.5 text-xs sm:text-sm font-medium text-slate-800 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#3D2E61] focus:border-[#3D2E61] transition-all shadow-sm"
+            />
+          </div>
+
+          <!-- Input 2: International Phone Selector with Real Country Flag Icons -->
+          <CountryPhoneInput 
+            id="discount-phone"
+            name="phone"
+            placeholder="Phone Number*"
+            required={true}
+            wrapperClass="bg-white border border-[#C3ABAB]/70 rounded-xl px-3 py-1 shadow-sm"
+            inputClass="py-3 text-xs sm:text-sm font-medium text-slate-800"
+          />
+
+          <!-- Input 3: Email Address -->
+          <div>
+            <input 
+              type="email" 
+              placeholder="Email Address*" 
+              required
+              class="w-full bg-white border border-[#C3ABAB]/70 rounded-xl px-4 py-3.5 text-xs sm:text-sm font-medium text-slate-800 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#3D2E61] focus:border-[#3D2E61] transition-all shadow-sm"
+            />
+          </div>
+
+          <!-- Input 4: Select Services Dropdown -->
+          <div class="relative">
+            <select 
+              required
+              class="w-full bg-white border border-[#C3ABAB]/70 rounded-xl px-4 py-3.5 text-xs sm:text-sm font-medium text-slate-700 appearance-none focus:outline-none focus:ring-2 focus:ring-[#3D2E61] focus:border-[#3D2E61] transition-all shadow-sm cursor-pointer pr-10"
+            >
+              <option value="" disabled selected>Select Services</option>
+              <option value="publishing">Book Publishing</option>
+              <option value="writing">Ebook Writing</option>
+              <option value="marketing">Book Marketing</option>
+              <option value="editing">Editing & Formatting</option>
+              <option value="design">Design Services</option>
+            </select>
+            <div class="absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Submit Button -->
+        <div class="pt-2 flex flex-col items-center gap-2">
+          <button 
+            id="claim-discount-submit"
+            type="submit" 
+            class="px-8 sm:px-10 py-3 sm:py-3.5 bg-white text-slate-900 border-2 border-slate-800 font-extrabold text-xs sm:text-sm rounded-2xl shadow-md hover:bg-slate-100 hover:shadow-lg active:scale-[0.98] transition-all duration-200 cursor-pointer"
+          >
+            Avail Your Discount Now
+          </button>
+          <p id="discount-success-msg" class="text-xs font-semibold text-emerald-700 hidden">
+            ✓ Your discount request has been submitted! Our senior publishing consultant will call you shortly.
+          </p>
+        </div>
+
+      </form>
+
+    </div>
+
+  </div>
+</section>
+
+<script>
+  const form = document.getElementById('claim-discount-form');
+  const btn = document.getElementById('claim-discount-submit');
+  const msg = document.getElementById('discount-success-msg');
+
+  if (form && btn && msg) {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      btn.innerText = 'Discount Claimed!';
+      btn.classList.add('bg-emerald-600', 'text-white', 'border-emerald-600');
+      btn.classList.remove('bg-white', 'text-slate-900');
+      msg.classList.remove('hidden');
+    });
+  }
+</script>

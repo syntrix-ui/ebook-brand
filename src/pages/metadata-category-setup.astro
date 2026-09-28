@@ -1,0 +1,9 @@
+---
+// metadata-category-setup.astro - Metadata & Category Setup Service Page
+import ServicePageTemplate from '../components/ServicePageTemplate.astro';
+import { getServiceData } from '../data/servicesData';
+
+const service = getServiceData('metadata-category-setup');
+---
+
+<ServicePageTemplate service={service} />

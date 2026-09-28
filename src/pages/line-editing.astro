@@ -1,0 +1,9 @@
+---
+// line-editing.astro - Line Editing Service Page
+import ServicePageTemplate from '../components/ServicePageTemplate.astro';
+import { getServiceData } from '../data/servicesData';
+
+const service = getServiceData('line-editing');
+---
+
+<ServicePageTemplate service={service} />

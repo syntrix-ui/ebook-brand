@@ -1,0 +1,116 @@
+---
+// Manuscript.astro - Submit Your Manuscript Section with Nunito 65px Numbers and Pure Hover Cards
+const services = [
+  {
+    num: "01",
+    title: "Ebook Writing",
+    desc: "Collaborate with vetted ghostwriters to develop your ideas into an engaging, polished manuscript that resonates with your target readership."
+  },
+  {
+    num: "02",
+    title: "Ebook Design",
+    desc: "Make an unforgettable first impression with bespoke, genre-specific book covers and beautifully structured typography tailored for print and digital."
+  },
+  {
+    num: "03",
+    title: "Editing & Formatting",
+    desc: "Refine every sentence with meticulous developmental, line, and copy editing alongside professional ePub, mobi, and PDF interior layout formatting."
+  },
+  {
+    num: "04",
+    title: "Ebook Publishing",
+    desc: "Publish your book globally with ISBN assignment, barcode generation, copyright protection, and direct distribution to major retail channels."
+  },
+  {
+    num: "05",
+    title: "Ebook Marketing",
+    desc: "Amplify your sales through data-driven Amazon PPC campaigns, social media influencer promos, press releases, and strategic bestseller launches."
+  },
+  {
+    num: "06",
+    title: "Book Trailer",
+    desc: "Capture reader attention with high-impact cinematic video trailers crafted to drive viral buzz across YouTube, Instagram Reels, and TikTok."
+  }
+];
+---
+
+<section class="w-full bg-white py-16 sm:py-24 text-slate-900 border-t border-slate-100 font-montserrat">
+  <div class="max-w-[1300px] mx-auto px-4 sm:px-6">
+    
+    <!-- Top Accent Line & Header -->
+    <div class="text-center space-y-3 mb-12 sm:mb-16 max-w-2xl mx-auto">
+      
+      <!-- Small Orange Accent Line -->
+      <div class="w-10 h-1 bg-[#D96B00] rounded-full mx-auto"></div>
+
+      <!-- Main Section Heading -->
+      <h2 class="font-nunito font-bold text-3xl sm:text-5xl lg:text-[52px] leading-tight text-[#111111]">
+        Submit Your Manuscript
+      </h2>
+
+      <!-- Description Paragraph -->
+      <p class="font-montserrat text-[#847C7C] text-sm sm:text-base leading-relaxed font-normal">
+        From raw ideas to international bestsellers, our complete publishing ecosystem empowers authors with unmatched expertise at every stage.
+      </p>
+
+    </div>
+
+    <!-- 6 Cards Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+      {services.map((service) => (
+        <div 
+          class="group relative bg-white text-slate-800 rounded-[28px] p-8 border-2 border-slate-200/90 transition-all duration-300 hover:bg-[#3D2E61] hover:border-[#3D2E61] hover:-translate-y-1.5 hover:shadow-2xl cursor-pointer"
+        >
+          <!-- Corner Watermark Number (Nunito Sans 700 65px) -->
+          <span 
+            class="absolute top-5 right-7 font-nunito font-bold text-5xl sm:text-[65px] leading-none text-[#E5E5E5] group-hover:text-white/20 transition-colors duration-300 select-none"
+          >
+            {service.num}
+          </span>
+
+          <!-- Book Outline Icon Container -->
+          <div 
+            class="w-14 h-14 rounded-2xl border border-slate-300/80 text-[#3D2E61] group-hover:border-white/30 group-hover:text-white flex items-center justify-center mx-auto mb-6 transition-colors duration-300"
+          >
+            <svg class="w-7 h-7 stroke-current" fill="none" viewBox="0 0 24 24" stroke-width="1.8">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+            </svg>
+          </div>
+
+          <!-- Card Content -->
+          <div class="text-center space-y-3">
+            <h3 
+              class="text-xl font-bold tracking-tight text-slate-800 group-hover:text-white transition-colors duration-300"
+            >
+              {service.title}
+            </h3>
+
+            <p 
+              class="text-xs sm:text-sm leading-relaxed text-[#847C7C] group-hover:text-white/80 transition-colors duration-300"
+            >
+              {service.desc}
+            </p>
+          </div>
+
+        </div>
+      ))}
+    </div>
+
+    <!-- Bottom Action Buttons matching mockup -->
+    <div class="flex flex-wrap items-center justify-center gap-4 pt-10 sm:pt-14">
+      <a 
+        href="/contact" 
+        class="inline-flex items-center justify-center px-7 sm:px-9 py-3.5 bg-[#F6C900] text-slate-950 font-extrabold text-xs sm:text-sm tracking-wider uppercase rounded-xl shadow-md hover:bg-[#e2b800] hover:shadow-lg active:scale-[0.99] transition-all cursor-pointer"
+      >
+        Get A Free Consultation Call
+      </a>
+      <a 
+        href="/contact" 
+        class="inline-flex items-center justify-center px-7 sm:px-9 py-3.5 bg-[#3D2E61] text-white font-extrabold text-xs sm:text-sm tracking-wider uppercase rounded-xl shadow-md hover:bg-[#4d3a7a] hover:shadow-lg active:scale-[0.99] transition-all cursor-pointer"
+      >
+        Let's Talk
+      </a>
+    </div>
+
+  </div>
+</section>

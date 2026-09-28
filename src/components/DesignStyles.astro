@@ -1,0 +1,105 @@
+---
+// DesignStyles.astro - Design Styles We Offer (8 cards grid matching Figma)
+interface StyleItem {
+  title: string;
+  desc: string;
+  icon: string;
+}
+
+const styles: StyleItem[] = [
+  {
+    title: "Illustrated / Animated",
+    desc: "Vibrant vector illustrations and character-driven concept art engineered for YA, Fantasy, and Children's literature.",
+    icon: "/design/Animated.png"
+  },
+  {
+    title: "Minimalist & Clean",
+    desc: "Striking black and white typography, negative space mastery, and sophisticated layouts for literary and contemporary fiction.",
+    icon: "/design/Black & White.png"
+  },
+  {
+    title: "Modern Fiction & Romance",
+    desc: "Emotionally charged character silhouettes, rich color grading, and commercial typography built for romance and drama charts.",
+    icon: "/design/Overlay (1).png"
+  },
+  {
+    title: "Sci-Fi & Fantasy Worlds",
+    desc: "Complex digital painting, high-fantasy crests, and atmospheric cosmic backdrops that signal epic scale immediately.",
+    icon: "/design/Overlay (2).png"
+  },
+  {
+    title: "Business & Thought Leadership",
+    desc: "Crisp vector iconography, bold authoritative titles, and premium finishes that establish immediate executive credibility.",
+    icon: "/design/Overlay (3).png"
+  },
+  {
+    title: "Memoir & Biography",
+    desc: "Subtle photographic treatments, textured palettes, and deeply personal typographic styling honoring true author journeys.",
+    icon: "/design/Overlay (4).png"
+  },
+  {
+    title: "Children's & Picture Books",
+    desc: "Whimsical color palettes, playful hand-lettering, and charming character designs calibrated for young readers and parents.",
+    icon: "/design/Overlay (5).png"
+  },
+  {
+    title: "Series & Franchise Branding",
+    desc: "Cohesive visual systems, custom title lettering, and cross-volume continuity ensuring instant reader recognition on retail shelves.",
+    icon: "/design/Overlay.png"
+  }
+];
+---
+
+<section class="w-full bg-white py-16 sm:py-24 text-slate-900 font-montserrat border-t border-slate-100">
+  <div class="max-w-[1300px] mx-auto px-4 sm:px-6">
+    
+    <!-- Section Header -->
+    <div class="text-center space-y-4 mb-14 sm:mb-20 max-w-3xl mx-auto">
+      <h2 class="font-nunito font-bold text-3xl sm:text-5xl lg:text-[46px] leading-tight text-slate-900 tracking-tight line-clamp-2">
+        Design Styles We Offer
+      </h2>
+      <p class="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal max-w-2xl mx-auto">
+        Choose from our versatile spectrum of book design disciplines tailored specifically to your story's genre, target demographic, and commercial shelf appeal.
+      </p>
+    </div>
+
+    <!-- 8 Cards Grid (4 per row on desktop, 2 on tablet, 1 on mobile) -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-7">
+      {styles.map((item) => (
+        <div class="bg-white rounded-[24px] p-6 sm:p-7 border border-slate-200/80 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group">
+          <div>
+            <!-- Icon -->
+            <div class="w-14 h-14 rounded-2xl bg-purple-50 flex items-center justify-center mb-6 group-hover:scale-105 transition-transform duration-200">
+              <img 
+                src={item.icon} 
+                alt={item.title} 
+                class="w-8 h-8 object-contain"
+              />
+            </div>
+
+            <!-- Title -->
+            <h3 class="font-nunito font-bold text-lg text-slate-900 mb-3 group-hover:text-[#3D2E61] transition-colors">
+              {item.title}
+            </h3>
+
+            <!-- Description -->
+            <p class="text-xs sm:text-[13px] text-slate-600 leading-relaxed font-normal">
+              {item.desc}
+            </p>
+          </div>
+
+          <!-- CTA Button -->
+          <div class="pt-6">
+            <a 
+              href="/contact" 
+              class="w-full py-2.5 bg-[#3D2E61] hover:bg-[#4d3a7a] active:scale-[0.99] text-white font-bold text-xs rounded-xl shadow-xs text-center transition-all duration-200 block"
+            >
+              Start Your Book
+            </a>
+          </div>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>

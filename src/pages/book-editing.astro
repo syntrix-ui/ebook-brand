@@ -1,0 +1,13 @@
+---
+// book-editing.astro - Book Editing Service Page matching Figma mockup
+import ServicePageTemplate from '../components/ServicePageTemplate.astro';
+import { getServiceData } from '../data/servicesData';
+
+const service = getServiceData('book-editing');
+---
+
+<ServicePageTemplate 
+  service={service} 
+  showPlatforms={false}
+  showDifference={false}
+/>

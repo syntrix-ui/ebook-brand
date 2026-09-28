@@ -1,0 +1,54 @@
+---
+import '../styles/globals.css';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import Portfolio from '../components/Portfolio.astro';
+import Manuscript from '../components/Manuscript.astro';
+import PublishedWorks from '../components/PublishedWorks.astro';
+import ClaimDiscount from '../components/ClaimDiscount.astro';
+import VideoShowcase from '../components/VideoShowcase.astro';
+import GenreExperts from '../components/GenreExperts.astro';
+import SuccessStories from '../components/SuccessStories.astro';
+import Roadmap from '../components/Roadmap.astro';
+import Faqs from '../components/Faqs.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<html lang="en" class="dark">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content="Frequently Asked Questions (FAQs) | Fleck Publisher" />
+    <title>Frequently Asked Questions (FAQs) | Fleck Publisher</title>
+
+    <!-- Google Fonts Montserrat & Nunito Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300..900;1,300..900&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap" rel="stylesheet">
+  </head>
+  <body class="min-h-screen bg-[#0a080d] text-slate-100 font-montserrat selection:bg-[#3D2E61] selection:text-white relative overflow-x-hidden">
+    
+    <!-- Header / Navigation Bar -->
+    <Header />
+
+    <!-- Main Content Area -->
+    <main class="w-full">
+      <Hero />
+      <Portfolio />
+      <Manuscript />
+      <PublishedWorks />
+      <ClaimDiscount />
+      <VideoShowcase />
+      <GenreExperts />
+      <SuccessStories />
+      <Roadmap />
+      <Faqs />
+    </main>
+
+    <!-- Footer Section -->
+    <Footer />
+
+  </body>
+</html>

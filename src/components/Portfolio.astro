@@ -1,0 +1,91 @@
+---
+// Portfolio.astro - Portfolio Continuous Infinite Marquee Section
+const bookCovers = [
+  "/12f9e45c63bc59a57ec6744141dd34ac67fbbd3a.jpg",
+  "/1846883451fd8e7888d65e8818d2fe467f02adb5.jpg",
+  "/244b958bea55399fa6b714f88f6a9c27c9003ed8.jpg",
+  "/39b1637c966308ede50bcdb7b21359babcfdb0e2.jpg",
+  "/58c55a2bc24d07bd6776eae1dd56ad412f9a23d0.jpg",
+  "/f9aefee6fee097eafd74850fe2328124faea2e3c.jpg",
+  "/a13f46073ac6f3113a3f4aaf8189bf36a8cbb7b8.png",
+  "/Rectangle 29.png"
+];
+---
+
+<section id="portfolio" class="w-full bg-white py-16 sm:py-24 text-slate-900 overflow-hidden relative">
+  <!-- Section Header -->
+  <div class="max-w-4xl mx-auto px-4 text-center space-y-3 mb-12 sm:mb-16">
+    
+    <!-- Subtitle matching Figma specifications -->
+    <h4 class="font-montserrat font-semibold text-[17px] text-[#847C7C] tracking-wide uppercase">
+      OUR PORTFOLIO
+    </h4>
+
+    <!-- Main Heading matching Figma specifications -->
+    <h2 class="font-nunito font-bold text-3xl sm:text-5xl lg:text-[55px] leading-tight text-[#111111]">
+      Celebrating Your Success
+    </h2>
+
+    <!-- Subtitle description paragraph -->
+    <p class="font-montserrat text-[#847C7C] text-sm sm:text-base leading-relaxed max-w-xl mx-auto font-normal">
+      Discover how we help authors across every genre craft compelling narratives, build stunning book packages, and achieve bestseller status.
+    </p>
+
+  </div>
+
+  <!-- Continuous Infinite Marquee Carousel Container -->
+  <div class="w-full overflow-hidden relative py-4 group">
+    
+    <!-- Infinite Scroll Wrapper (Duplicated arrays for infinite loop) -->
+    <div class="flex gap-6 w-max animate-marquee">
+      
+      <!-- First Set of Covers -->
+      {bookCovers.map((cover, idx) => (
+        <div class="w-[200px] sm:w-[250px] lg:w-[280px] h-[300px] sm:h-[370px] lg:h-[410px] shrink-0 rounded-2xl overflow-hidden shadow-lg border border-slate-100/60 bg-slate-100 transition-all duration-300 hover:scale-[1.03] hover:shadow-2xl">
+          <img 
+            src={cover} 
+            alt={`Book Cover ${idx + 1}`} 
+            loading="lazy"
+            class="w-full h-full object-cover object-center"
+          />
+        </div>
+      ))}
+
+      <!-- Second Set of Covers for Seamless Infinite Loop -->
+      {bookCovers.map((cover, idx) => (
+        <div class="w-[200px] sm:w-[250px] lg:w-[280px] h-[300px] sm:h-[370px] lg:h-[410px] shrink-0 rounded-2xl overflow-hidden shadow-lg border border-slate-100/60 bg-slate-100 transition-all duration-300 hover:scale-[1.03] hover:shadow-2xl">
+          <img 
+            src={cover} 
+            alt={`Book Cover Loop ${idx + 1}`} 
+            loading="lazy"
+            class="w-full h-full object-cover object-center"
+          />
+        </div>
+      ))}
+
+    </div>
+
+  </div>
+</section>
+
+<style>
+  @keyframes marquee {
+    0% {
+      transform: translateX(0%);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  .animate-marquee {
+    display: flex;
+    width: max-content;
+    animation: marquee 30s linear infinite;
+  }
+
+  /* Pause on hover for interactive user experience */
+  .group:hover .animate-marquee {
+    animation-play-state: paused;
+  }
+</style>

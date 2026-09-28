@@ -1,0 +1,95 @@
+---
+// AboutAgileProcess.astro - Our 4-Step Agile Approach Section matching Figma mockup
+const steps = [
+  {
+    step: "01",
+    phase: "PHASE 01",
+    title: "Planning & Strategy",
+    desc: "We begin by clarifying your target readers, publishing formats, retail pricing, and timeline. You set the vision; we engineer the launch plan."
+  },
+  {
+    step: "02",
+    phase: "PHASE 02",
+    title: "Editorial & Design",
+    desc: "Comprehensive developmental editing, line proofing, and award-winning cover design tailored to dominate your book's specific genre."
+  },
+  {
+    step: "03",
+    phase: "PHASE 03",
+    title: "Validation & Formatting",
+    desc: "Reflowable EPUBs, crisp print PDFs, and metadata configurations formatted to pass global retailer checks without delays or rejection."
+  },
+  {
+    step: "04",
+    phase: "PHASE 04",
+    title: "Global Distribution",
+    desc: "We roll out your book across Amazon, Apple Books, Google Play, Barnes & Noble, and 40,000+ indie bookstores worldwide."
+  }
+];
+---
+
+<section class="w-full bg-white py-16 sm:py-24 text-slate-900 font-montserrat border-t border-slate-100 relative overflow-hidden">
+  <div class="max-w-[1350px] mx-auto px-4 sm:px-6">
+    
+    <!-- Section Header -->
+    <div class="text-center space-y-4 mb-14 sm:mb-20 max-w-3xl mx-auto">
+      <div>
+        <span class="text-xs sm:text-sm font-bold uppercase tracking-widest text-[#3D2E61] font-montserrat block">
+          OUR METHODOLOGY
+        </span>
+      </div>
+
+      <h2 class="font-nunito font-bold text-3xl sm:text-5xl lg:text-[46px] leading-tight text-slate-900 tracking-tight line-clamp-2">
+        Our 4-Step Agile Approach
+      </h2>
+
+      <p class="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal max-w-2xl mx-auto">
+        A transparent, collaborative workflow engineered to eliminate publishing friction and maximize market visibility.
+      </p>
+    </div>
+
+    <!-- 4 Step Cards Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 relative z-10">
+      {steps.map((s) => (
+        <div class="bg-white rounded-[24px] p-6 sm:p-7 border border-slate-200/90 shadow-[0_4px_24px_rgba(0,0,0,0.03)] hover:shadow-[0_12px_32px_rgba(61,46,97,0.1)] hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group h-full relative overflow-hidden">
+          
+          <!-- Soft Gradient Blur in Top-Right Corner -->
+          <div class="absolute -top-6 -right-6 w-32 h-32 bg-[#E2DFEB]/90 rounded-full blur-2xl pointer-events-none"></div>
+
+          <div class="relative z-10">
+            <!-- Top Row: Big Number on Left, Squircle Badge on Right -->
+            <div class="flex items-center justify-between mb-6">
+              <span class="font-nunito font-bold text-3xl sm:text-4xl text-slate-800 tracking-tight">
+                {s.step}
+              </span>
+
+              <div class="w-8 h-8 rounded-[12px] bg-slate-100/90 border border-slate-200/80 flex items-center justify-center text-[11px] font-semibold text-slate-500 shadow-xs">
+                {s.step}
+              </div>
+            </div>
+
+            <!-- Step Title -->
+            <h3 class="font-nunito font-bold text-lg sm:text-[18px] text-slate-900 tracking-tight leading-snug mb-3">
+              {s.title}
+            </h3>
+
+            <!-- Description -->
+            <p class="text-xs sm:text-[13px] text-slate-600 leading-relaxed font-normal">
+              {s.desc}
+            </p>
+          </div>
+
+          <!-- Bottom Row: Phase Name & Progress Pill -->
+          <div class="pt-8 mt-6 border-t border-slate-100/80 flex items-center justify-between text-[11px] font-bold text-slate-400 group-hover:text-slate-600 transition-colors tracking-wider">
+            <span>{s.phase}</span>
+            <div class="w-9 h-1.5 rounded-full bg-slate-200 overflow-hidden relative">
+              <div class="h-full bg-[#3D2E61] rounded-full w-4 group-hover:w-full transition-all duration-300 ease-out"></div>
+            </div>
+          </div>
+
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>

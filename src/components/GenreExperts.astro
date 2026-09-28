@@ -1,0 +1,158 @@
+---
+// GenreExperts.astro - Genre Experts & Author Website Development Section
+// Features sticky right side and dark subtext readable typography
+---
+
+<section class="w-full bg-white py-16 sm:py-24 text-slate-900 font-montserrat">
+  <div class="max-w-[1350px] mx-auto px-4 sm:px-6">
+    
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
+      
+      <!-- Left Column: Scrollable Content -->
+      <div class="lg:col-span-6 space-y-16">
+        
+        <!-- Block 1: Genre Experts -->
+        <div class="space-y-6">
+          
+          <!-- Tagline -->
+          <p class="text-xs sm:text-sm font-semibold text-slate-700">
+            Tailored Editorial & Publishing Strategy Across Every Major Category
+          </p>
+
+          <!-- Headline -->
+          <h2 class="font-nunito font-bold text-3xl sm:text-4xl lg:text-[42px] leading-tight text-[#3D2E61] line-clamp-2">
+            Fiction - Non - Fiction - Business: Genre Experts You Can Rely On!
+          </h2>
+
+          <!-- Light Purple Signature Card -->
+          <div class="bg-[#F5F2F9] rounded-[28px] px-6 sm:px-8 pt-6 sm:pt-8 pb-0 border border-purple-100/60 shadow-sm overflow-hidden flex flex-col justify-between space-y-6">
+            
+            <div class="space-y-4">
+              <div class="space-y-0.5 font-montserrat font-bold text-xs sm:text-sm text-[#3D2E61] uppercase tracking-wider">
+                <div>SIGNATURE PROCESS -</div>
+                <div>BOUTIQUE APPROACH</div>
+                <div>PERSONALIZED FOR AUTHORS</div>
+              </div>
+
+              <p class="text-xs sm:text-sm text-slate-800 leading-relaxed font-normal">
+                Every book genre demands specialized market awareness. Our boutique publishing model pairs you with seasoned developmental editors and marketing strategists who understand audience tropes, packaging benchmarks, and reader expectations in your niche.
+              </p>
+
+              <div>
+                <a 
+                  href="/contact" 
+                  class="inline-flex items-center justify-center px-4 py-2 bg-white text-slate-800 border border-slate-700/80 rounded-lg text-xs font-bold hover:bg-slate-100 shadow-sm transition-all cursor-pointer"
+                >
+                  Book A Free Consultation
+                </a>
+              </div>
+            </div>
+
+            <!-- Staggered Bottom-Aligned 3 Book Covers matching Figma Screenshot -->
+            <div class="flex items-end gap-3 sm:gap-4 -mx-6 sm:-mx-8 px-6 sm:px-8 pt-4">
+              <!-- Image 1: Medium Tall (Trust No One) -->
+              <div class="w-1/3 h-[180px] sm:h-[220px] rounded-t-2xl overflow-hidden shadow-lg border border-slate-200/40 shrink-0">
+                <img src="/Rectangle 70.png" alt="Trust No One Book" class="w-full h-full object-cover object-top" />
+              </div>
+
+              <!-- Image 2: Short (Gregg Olsen) -->
+              <div class="w-1/3 h-[130px] sm:h-[155px] rounded-t-2xl overflow-hidden shadow-lg border border-slate-200/40 shrink-0">
+                <img src="/Rectangle 71.png" alt="Gregg Olsen Book" class="w-full h-full object-cover object-top" />
+              </div>
+
+              <!-- Image 3: Tallest (The Stopover) -->
+              <div class="w-1/3 h-[230px] sm:h-[290px] rounded-t-2xl overflow-hidden shadow-lg border border-slate-200/40 shrink-0">
+                <img src="/Rectangle 72.png" alt="The Stopover Book" class="w-full h-full object-cover object-top" />
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- Block 2: Author Website Development -->
+        <div class="space-y-6 pt-4 border-t border-slate-100">
+          
+          <h2 class="font-nunito font-bold text-3xl sm:text-4xl text-[#3D2E61] leading-tight">
+            Author Website Development
+          </h2>
+
+          <p class="text-xs sm:text-sm text-slate-800 leading-relaxed font-normal">
+            like other strong professions, authorship also needs powerful branding, and a website does exactly this and more. it is your dedicated space on the internet that:
+          </p>
+
+          <!-- Bullet Points -->
+          <ul class="space-y-2 text-xs sm:text-sm text-slate-800 leading-relaxed pl-1">
+            <li class="flex items-start gap-2">
+              <span class="text-[#3D2E61] font-bold">•</span>
+              <span>establishes your first impression and marks your footprint in the literary world.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-[#3D2E61] font-bold">•</span>
+              <span>works as your digital storefront and a marketing representative that serves round the clock.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-[#3D2E61] font-bold">•</span>
+              <span>showcases your bestsellers, connects readers to your work and builds your long-term credibility.</span>
+            </li>
+          </ul>
+
+          <p class="text-xs sm:text-sm text-slate-800 leading-relaxed">
+            that's why, we create professional author websites that are mobile-friendly, optimized for search engines, and speak your genre, tone, and desired impact.
+          </p>
+
+          <p class="text-xs sm:text-sm text-slate-800 leading-relaxed">
+            fleck publisher's author website development services include homepage design, book landing pages, blog setup, email capture tools, and integration with sales platforms.
+          </p>
+
+          <p class="text-xs sm:text-sm text-slate-900 font-bold leading-relaxed">
+            are you ready to build a custom book website that helps you launch and scale your reach, drive book sales, and grow your readership?
+          </p>
+
+        </div>
+
+      </div>
+
+      <!-- Right Column: Sticky / Fixed on Desktop Scroll -->
+      <div class="lg:col-span-6 lg:sticky lg:top-28 lg:self-start space-y-6">
+        
+        <!-- Top Description Paragraph -->
+        <p class="text-xs sm:text-sm text-slate-800 leading-relaxed font-normal">
+          From pulse-pounding thrillers and fantasy epics to inspirational memoirs and authoritative business guides, our multi-genre editorial veterans help you stand out on every major bookstore shelf.
+        </p>
+
+        <!-- 6 Book Covers 3x2 Grid -->
+        <div class="grid grid-cols-3 gap-3 sm:gap-4">
+          
+          <div class="rounded-2xl overflow-hidden shadow-lg border border-slate-100 bg-slate-100 aspect-[2/3] hover:scale-105 transition-transform duration-300">
+            <img src="/Rectangle 62 (1).png" alt="The Night Collector" class="w-full h-full object-cover" />
+          </div>
+
+          <div class="rounded-2xl overflow-hidden shadow-lg border border-slate-100 bg-slate-100 aspect-[2/3] hover:scale-105 transition-transform duration-300">
+            <img src="/Rectangle 63.png" alt="Billy Bat" class="w-full h-full object-cover" />
+          </div>
+
+          <div class="rounded-2xl overflow-hidden shadow-lg border border-slate-100 bg-slate-100 aspect-[2/3] hover:scale-105 transition-transform duration-300">
+            <img src="/Rectangle 64.png" alt="Dungeon Crawler Carl" class="w-full h-full object-cover" />
+          </div>
+
+          <div class="rounded-2xl overflow-hidden shadow-lg border border-slate-100 bg-slate-100 aspect-[2/3] hover:scale-105 transition-transform duration-300">
+            <img src="/Rectangle 65.png" alt="Her First Mistake" class="w-full h-full object-cover" />
+          </div>
+
+          <div class="rounded-2xl overflow-hidden shadow-lg border border-slate-100 bg-slate-100 aspect-[2/3] hover:scale-105 transition-transform duration-300">
+            <img src="/Rectangle 66.png" alt="21 Days Of Fear" class="w-full h-full object-cover" />
+          </div>
+
+          <div class="rounded-2xl overflow-hidden shadow-lg border border-slate-100 bg-slate-100 aspect-[2/3] hover:scale-105 transition-transform duration-300">
+            <img src="/Rectangle 67.png" alt="The Ferry Man's Daughter" class="w-full h-full object-cover" />
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</section>

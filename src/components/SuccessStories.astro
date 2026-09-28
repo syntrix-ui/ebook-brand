@@ -1,0 +1,67 @@
+---
+// SuccessStories.astro - Success Stories Testimonials Section
+import SuccessStoriesCarousel from './SuccessStoriesCarousel';
+
+const avatars = [
+  "/2405fcbb203ece77e6c55a49ae556e56374b0d8f.png",
+  "/b2b97fd883cc3b94ff2c8c611f0232164ae7ba4f.png",
+  "/c23fe4a88b0714499844a08ce9576e6871da1973.png",
+  "/Rectangle 44.png",
+  "/Rectangle 45.png"
+];
+---
+
+<section class="w-full bg-[#3D2E61] py-16 sm:py-24 text-white font-montserrat border-t border-white/10 relative overflow-hidden">
+  <div class="max-w-[1350px] mx-auto px-4 sm:px-6">
+    
+    <!-- Top Header Layout (Title on left, Avatar stack & Review Button on right) -->
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-12">
+      
+      <!-- Left Side Title & Description -->
+      <div class="space-y-3 max-w-xl">
+        <h2 class="font-nunito font-bold text-3xl sm:text-5xl text-white tracking-tight">
+          Success Stories
+        </h2>
+        <p class="text-xs sm:text-sm text-purple-200/80 leading-relaxed font-normal">
+          like other strong professions, authorship also needs powerful branding, and a website does exactly this and more. it is your dedicated space on the internet that:
+        </p>
+      </div>
+
+      <!-- Right Side Avatar Stack & Submit Review Button -->
+      <div class="flex flex-col md:items-end space-y-3 shrink-0">
+        
+        <!-- Avatar Overlap Stack -->
+        <div class="flex items-center -space-x-2">
+          {avatars.map((img, i) => (
+            <div class="w-9 h-9 rounded-full overflow-hidden border-2 border-[#3D2E61] shadow-md bg-slate-800">
+              <img src={img} alt={`Author ${i + 1}`} class="w-full h-full object-cover" />
+            </div>
+          ))}
+        </div>
+
+        <!-- Rating Subtitle Line -->
+        <p class="text-[11px] font-semibold text-purple-200/90 tracking-wide">
+          Rated 4.9/5 by 500+ Authors
+        </p>
+
+        <!-- Submit Your Review Button -->
+        <div>
+          <a 
+            href="/contact" 
+            class="inline-flex items-center justify-center px-4 py-2 bg-white text-slate-900 font-bold text-xs rounded-lg hover:bg-slate-100 shadow-md transition-all cursor-pointer"
+          >
+            Submit Your Review
+          </a>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Testimonial Carousel -->
+    <div>
+      <SuccessStoriesCarousel client:load />
+    </div>
+
+  </div>
+</section>

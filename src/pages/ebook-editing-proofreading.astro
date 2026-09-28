@@ -1,0 +1,9 @@
+---
+// ebook-editing-proofreading.astro - Ebook Editing and Proofreading Service Page
+import ServicePageTemplate from '../components/ServicePageTemplate.astro';
+import { getServiceData } from '../data/servicesData';
+
+const service = getServiceData('ebook-editing-proofreading');
+---
+
+<ServicePageTemplate service={service} />

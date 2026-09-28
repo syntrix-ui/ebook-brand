@@ -1,0 +1,9 @@
+---
+// voiceover-music.astro - Voiceover & Music Service Page
+import ServicePageTemplate from '../components/ServicePageTemplate.astro';
+import { getServiceData } from '../data/servicesData';
+
+const service = getServiceData('voiceover-music');
+---
+
+<ServicePageTemplate service={service} />

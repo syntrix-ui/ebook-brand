@@ -1,0 +1,170 @@
+---
+// blog/index.astro - Blog listing page matching contact.astro banner and site theme exactly
+import '../../styles/globals.css';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import SuccessStories from '../../components/SuccessStories.astro';
+import { blogsData } from '../../data/blogsData';
+
+const categories = ["All", "Publishing", "Writing", "Guides", "Editing", "Marketing"];
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content="Explore the Fleck Publisher blog for expert publishing advice, book marketing strategies, writing tips, and self-publishing insights." />
+    <title>Blog | Fleck Publisher</title>
+
+    <!-- Google Fonts Montserrat & Nunito Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300..900;1,300..900&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap" rel="stylesheet">
+  </head>
+  <body class="min-h-screen bg-[#FAF9FC] text-slate-900 font-montserrat selection:bg-[#3D2E61] selection:text-white relative overflow-x-hidden">
+    
+    <!-- Top Dark Purple Bar with Header -->
+    <div class="w-full bg-[#1E1435] relative">
+      <div class="h-28 sm:h-32">
+        <Header />
+      </div>
+    </div>
+
+    <!-- Hero Header Banner Section (Matching contact.astro banner exactly) -->
+    <section class="w-full bg-gradient-to-b from-[#1E1435] to-[#2B1B4D] text-white py-14 sm:py-20 px-4 sm:px-6 relative overflow-hidden">
+      <!-- Ambient Glow Decor -->
+      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[350px] bg-purple-600/20 blur-[130px] rounded-full pointer-events-none"></div>
+
+      <div class="max-w-[1300px] mx-auto text-center relative z-10 space-y-4">
+        <h1 class="font-nunito font-bold text-3xl sm:text-5xl lg:text-[52px] text-white tracking-tight leading-tight line-clamp-2 max-w-3xl mx-auto">
+          Blogs & Publishing Insights
+        </h1>
+
+        <p class="font-montserrat text-sm sm:text-base text-slate-300 max-w-2xl mx-auto leading-relaxed font-normal">
+          Explore expert publishing advice, book marketing strategies, writing tips, self-publishing insights, and industry trends to help authors succeed.
+        </p>
+
+        <!-- Category Tabs -->
+        <div class="pt-6 flex flex-wrap items-center justify-center gap-2 sm:gap-3 max-w-3xl mx-auto" id="category-filter">
+          {categories.map((cat, idx) => (
+            <button 
+              type="button"
+              data-category={cat}
+              class={`category-btn px-5 py-2 rounded-xl text-xs sm:text-sm font-semibold tracking-wide transition-all duration-200 cursor-pointer ${
+                idx === 0 
+                  ? 'bg-[#FAF9FC] text-[#2B1B4D] font-bold shadow-md active-cat' 
+                  : 'bg-white/10 hover:bg-white/20 text-white/90 border border-white/15'
+              }`}
+            >
+              {cat}
+            </button>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Main Content: Blog Cards Grid -->
+    <main class="w-full py-12 sm:py-20 px-4 sm:px-6">
+      <div class="max-w-[1300px] mx-auto">
+        <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3" id="blogs-grid">
+          {blogsData.map((post) => (
+            <article 
+              data-category={post.category} 
+              class="blog-card bg-white rounded-2xl border border-slate-200/90 overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between hover:-translate-y-1"
+            >
+              <div>
+                <!-- Image Wrapper -->
+                <a href={`/blog/${post.slug}`} class="block relative h-56 sm:h-60 overflow-hidden bg-slate-100">
+                  <img 
+                    src={post.image} 
+                    alt={post.title} 
+                    loading="lazy"
+                    class="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                  />
+                  <!-- Category tag badge -->
+                  <div class="absolute top-4 left-4">
+                    <span class="px-3 py-1 rounded-md bg-[#3D2E61] text-white text-[11px] font-bold uppercase tracking-wider shadow-sm">
+                      {post.category}
+                    </span>
+                  </div>
+                </a>
+
+                <!-- Details -->
+                <div class="p-6 sm:p-7">
+                  <div class="flex items-center gap-2 text-xs text-slate-500 font-medium mb-3">
+                    <span>{post.date}</span>
+                    <span>•</span>
+                    <span class="text-[#3D2E61] font-semibold">{post.readTime}</span>
+                  </div>
+
+                  <h2 class="font-nunito font-bold text-xl sm:text-[22px] text-[#23173D] hover:text-[#3D2E61] transition-colors leading-snug line-clamp-2 mb-3">
+                    <a href={`/blog/${post.slug}`} class="focus:outline-none">
+                      {post.title}
+                    </a>
+                  </h2>
+
+                  <p class="font-montserrat text-sm text-slate-600 line-clamp-3 leading-relaxed font-normal">
+                    {post.excerpt}
+                  </p>
+                </div>
+              </div>
+
+              <!-- Footer CTA -->
+              <div class="px-6 pb-6 sm:px-7 sm:pb-7 pt-2 border-t border-slate-100 flex items-center justify-between">
+                <a 
+                  href={`/blog/${post.slug}`} 
+                  class="inline-flex items-center gap-1.5 text-sm font-bold text-[#3D2E61] hover:text-[#523d83] transition-colors"
+                >
+                  Read more
+                  <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                  </svg>
+                </a>
+                <span class="text-[11px] font-semibold text-slate-400 uppercase tracking-wider">
+                  Fleck Publisher
+                </span>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </main>
+
+    <!-- Client Testimonials Carousel -->
+    <SuccessStories />
+
+    <!-- Site Footer -->
+    <Footer />
+
+    <!-- Client-side Category Filtering Script -->
+    <script>
+      const buttons = document.querySelectorAll('.category-btn');
+      const cards = document.querySelectorAll('.blog-card');
+
+      buttons.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const selected = btn.getAttribute('data-category');
+
+          buttons.forEach((b) => {
+            b.classList.remove('bg-[#FAF9FC]', 'text-[#2B1B4D]', 'font-bold', 'shadow-md');
+            b.classList.add('bg-white/10', 'text-white/90', 'border', 'border-white/15');
+          });
+
+          btn.classList.remove('bg-white/10', 'text-white/90', 'border', 'border-white/15');
+          btn.classList.add('bg-[#FAF9FC]', 'text-[#2B1B4D]', 'font-bold', 'shadow-md');
+
+          cards.forEach((card) => {
+            const cardCat = card.getAttribute('data-category');
+            if (selected === 'All' || cardCat === selected) {
+              (card as HTMLElement).style.display = 'flex';
+            } else {
+              (card as HTMLElement).style.display = 'none';
+            }
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,107 @@
+---
+// CoverDesignBenefits.astro - Benefits of Professional Book Cover Design Section
+interface BenefitCard {
+  icon: 'lightning' | 'shield' | 'platform';
+  title: string;
+  desc: string;
+  btnText?: string;
+  btnLink?: string;
+}
+
+interface Props {
+  title?: string;
+  cards?: BenefitCard[];
+}
+
+const defaultCards: BenefitCard[] = [
+  {
+    icon: 'lightning',
+    title: "Higher Clicks and Conversions",
+    desc: "Your book cover is your #1 sales asset. We design it to attract, hook, and sell at a glance.",
+    btnText: "Start Your Book",
+    btnLink: "/contact"
+  },
+  {
+    icon: 'shield',
+    title: "Genre Trust, Instant Recognition",
+    desc: "Strong covers signal quality and professionalism. Readers know what to expect—and are more likely to buy.",
+    btnText: "Start Your Book",
+    btnLink: "/contact"
+  },
+  {
+    icon: 'platform',
+    title: "Multi-Platform Ready",
+    desc: "You get a cover that's formatted for KDP, Apple Books, print-on-demand, and promo use—no stretching or last-minute resizing.",
+    btnText: "Start Your Book",
+    btnLink: "/contact"
+  }
+];
+
+const {
+  title = "Benefits of Professional Book Cover Design",
+  cards = defaultCards
+} = Astro.props;
+---
+
+<section class="w-full bg-white py-16 sm:py-24 text-slate-900 font-montserrat border-t border-slate-100 relative">
+  <div class="max-w-[1240px] mx-auto px-4 sm:px-6">
+    
+    <!-- Centered Headline -->
+    <div class="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
+      <h2 class="font-nunito font-bold text-3xl sm:text-4xl lg:text-[42px] leading-tight text-[#2F2148] tracking-tight line-clamp-2">
+        {title}
+      </h2>
+    </div>
+
+    <!-- 3 Cards Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 items-stretch">
+      {cards.map((card) => (
+        <div class="bg-white rounded-[22px] sm:rounded-[26px] p-7 sm:p-8 border border-slate-200/90 shadow-[0_4px_24px_rgba(0,0,0,0.03)] hover:shadow-[0_12px_32px_rgba(61,46,97,0.09)] hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between h-full group">
+          
+          <div>
+            <!-- Icon Container -->
+            <div class="w-11 h-11 rounded-xl bg-slate-50 border border-slate-200/80 flex items-center justify-center mb-6 text-slate-700 group-hover:border-purple-200 group-hover:bg-[#F3EFFC] transition-colors">
+              {card.icon === 'lightning' && (
+                <svg class="w-5 h-5 text-slate-700 group-hover:text-[#3D2E61] transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
+              )}
+              {card.icon === 'shield' && (
+                <svg class="w-5 h-5 text-slate-700 group-hover:text-[#3D2E61] transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                </svg>
+              )}
+              {card.icon === 'platform' && (
+                <svg class="w-5 h-5 text-slate-700 group-hover:text-[#3D2E61] transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
+                </svg>
+              )}
+            </div>
+
+            <!-- Title -->
+            <h3 class="font-nunito font-extrabold text-lg sm:text-[19px] text-slate-900 leading-snug mb-3 tracking-tight">
+              {card.title}
+            </h3>
+
+            <!-- Description -->
+            <p class="text-xs sm:text-[13px] text-slate-600 leading-relaxed font-normal mb-8">
+              {card.desc}
+            </p>
+          </div>
+
+          <!-- Bottom CTA Button -->
+          <div class="pt-2">
+            <a 
+              href={card.btnLink || "/contact"} 
+              class="w-full py-2.5 px-4 bg-[#3D2E61] hover:bg-[#4d3a7a] active:scale-[0.99] text-white font-semibold text-xs rounded-xl shadow-xs text-center transition-all duration-200 block"
+            >
+              {card.btnText || "Start Your Book"}
+            </a>
+          </div>
+
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>

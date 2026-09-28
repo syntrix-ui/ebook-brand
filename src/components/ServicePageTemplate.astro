@@ -1,0 +1,143 @@
+---
+// ServicePageTemplate.astro - Reusable template for all 9 service sub-pages
+import '../styles/globals.css';
+import Header from './Header.astro';
+import AboutHero from './AboutHero.astro';
+import AboutShowcase from './AboutShowcase.astro';
+import AboutManuscript from './AboutManuscript.astro';
+import PublishingPlatforms from './PublishingPlatforms.astro';
+import AboutTeamBanner from './AboutTeamBanner.astro';
+import PublishingProcess from './PublishingProcess.astro';
+import FleckDifference from './FleckDifference.astro';
+import WhyChooseFleck from './WhyChooseFleck.astro';
+import SuccessStories from './SuccessStories.astro';
+import Roadmap from './Roadmap.astro';
+import Faqs from './Faqs.astro';
+import Footer from './Footer.astro';
+import type { ServiceData } from '../data/servicesData';
+
+interface Props {
+  service: ServiceData;
+  showPlatforms?: boolean;
+  showTeamBanner?: boolean;
+  showDifference?: boolean;
+}
+
+const { 
+  service,
+  showPlatforms = false,
+  showTeamBanner = false,
+  showDifference = false
+} = Astro.props;
+
+// Hero consultation form is kept ONLY for Book Publishing Services and Self-Publishing
+const allowedHeroFormSlugs = ['book-publishing', 'self-publishing'];
+const shouldShowHeroForm = allowedHeroFormSlugs.includes(service.slug);
+
+// Only book-publishing and book-editing get light overlay in template, all other 20+ service pages stay dark
+const lightServiceSlugs = ['book-publishing', 'book-editing'];
+const isLightHero = lightServiceSlugs.includes(service.slug);
+---
+
+<html lang="en" class="dark">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={service.metaDescription} />
+    <title>{service.metaTitle}</title>
+
+    <!-- Google Fonts Montserrat & Nunito Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300..900;1,300..900&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap" rel="stylesheet">
+  </head>
+  <body class="min-h-screen bg-[#0a080d] text-slate-100 font-montserrat selection:bg-[#3D2E61] selection:text-white relative overflow-x-hidden">
+    
+    <!-- Header / Navigation Bar -->
+    <Header />
+
+    <!-- Main Content Area arranged in exact sequence matching Figma design -->
+    <main class="w-full">
+      <!-- Section 1: Hero -->
+      <AboutHero 
+        subtitle={service.hero.badge}
+        titleNormal={service.hero.title}
+        titleBold={service.hero.titleHighlight}
+        desc={service.hero.subtitle}
+        serviceTag={service.hero.serviceTag}
+        bgImg={service.hero.bgImg}
+        showForm={shouldShowHeroForm}
+        lightOverlay={isLightHero}
+      />
+
+      <!-- Section 2: Submit Your Manuscript / Blueprint (6 Cards) -->
+      <AboutManuscript 
+        title={service.manuscript.title}
+        subtitle={service.manuscript.subtitle}
+        cards={service.manuscript.cards}
+      />
+
+      <!-- Section 3: Book Showcase (Copy & Book Covers Collage) -->
+      <AboutShowcase 
+        headline={service.showcase.headline}
+        desc={service.showcase.description}
+        btnText={service.showcase.btnText}
+        collageImg={service.showcase.collageImg}
+      />
+
+      <!-- Optional Platforms Where You Can Publish -->
+      {showPlatforms && <PublishingPlatforms />}
+
+      <!-- Optional Team / Department Banner (Dark Purple Banner) -->
+      {showTeamBanner && (
+        <AboutTeamBanner 
+          headline={service.purpleBanner.headline}
+          subheading={service.purpleBanner.subheading}
+          p1={service.purpleBanner.p1}
+          p2={service.purpleBanner.p2}
+        />
+      )}
+
+      <!-- Section 4: 4-Step Process -->
+      <PublishingProcess 
+        badge={service.process.badge}
+        title={service.process.title}
+        subtitle={service.process.subtitle}
+        steps={service.process.steps}
+      />
+
+      <!-- Optional The Fleck Difference -->
+      {showDifference && (
+        <FleckDifference 
+          badge={service.difference.badge}
+          title={service.difference.title}
+          subtitle={service.difference.subtitle}
+          cards={service.difference.cards}
+        />
+      )}
+
+      <!-- Section 5: Why Authors Choose Fleck Publisher (With Reading Cutout) -->
+      <WhyChooseFleck 
+        title={service.whyChoose.title}
+        points={service.whyChoose.points}
+        btnText={service.whyChoose.btnText}
+        authorImg={service.whyChoose.authorImg}
+      />
+
+      <!-- Section 6: Success Stories Carousel -->
+      <SuccessStories />
+
+      <!-- Section 7: Have An Amazing Idea? Roadmap Form -->
+      <Roadmap />
+
+      <!-- Section 8: Frequently Asked Questions (FAQs) -->
+      <Faqs />
+    </main>
+
+    <!-- Section 12: Footer -->
+    <Footer />
+
+  </body>
+</html>

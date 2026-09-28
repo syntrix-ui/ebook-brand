@@ -1,0 +1,37 @@
+---
+// AboutCtaBanner.astro - Dark Purple CTA Banner with Book protruding outside container
+---
+
+<section class="w-full bg-white py-14 sm:py-20 text-white font-montserrat relative z-10 overflow-visible">
+  <div class="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 overflow-visible">
+    <div class="bg-[#3D2E61] rounded-[24px] relative flex flex-col md:flex-row items-center justify-between min-h-[200px] md:min-h-[220px] px-8 sm:px-12 lg:px-14 py-8 md:py-10 shadow-xl overflow-visible">
+      
+      <!-- Left Column: Exact Figma Copy & Action Button -->
+      <div class="w-full md:max-w-[62%] lg:max-w-[58%] space-y-6 z-10">
+        <p class="text-white text-base sm:text-lg md:text-xl lg:text-[22px] font-medium leading-relaxed tracking-tight">
+          We are more than a book writing service: we are creative partners in your journey to launching a beautiful book. Let's publish something special together!
+        </p>
+
+        <div>
+          <a 
+            href="/contact" 
+            class="inline-flex items-center justify-center px-6 py-2.5 sm:px-7 sm:py-3 bg-white text-[#3D2E61] hover:bg-slate-100 active:scale-[0.98] font-bold text-xs sm:text-[13px] rounded-lg shadow-md transition-all duration-200 cursor-pointer"
+          >
+            Discuss Your Book Vision
+          </a>
+        </div>
+      </div>
+
+      <!-- Right Column: Open Book protruding out on the right side -->
+      <div class="w-full md:w-auto flex justify-center md:justify-end items-end relative md:absolute md:right-[-35px] lg:right-[-60px] xl:right-[-75px] md:bottom-[-2px] overflow-visible pointer-events-none z-20 mt-6 md:mt-0">
+        <img 
+          src="/Discuss%20your%20book%20vision.png" 
+          alt="Discuss Your Book Vision" 
+          class="w-[320px] sm:w-[380px] md:w-[420px] lg:w-[480px] xl:w-[520px] max-w-none h-auto object-contain block select-none"
+          loading="lazy"
+        />
+      </div>
+
+    </div>
+  </div>
+</section>

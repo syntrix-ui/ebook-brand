@@ -1,0 +1,110 @@
+---
+// GenresWeCover.astro - Dedicated Genres We Cover Section matching Figma design exactly
+const genres = [
+  {
+    title: "Romance",
+    desc: "We write emotionally resonant romance that delivers character chemistry, internal conflict, and genre-expected resolution. From slow burns to high-heat pacing, our writers understand the structure and audience demands of contemporary and niche romance subgenres.",
+    icon: "/writting/Overlay.png"
+  },
+  {
+    title: "Horror",
+    desc: "We develop tension-driven narratives that combine psychological unease with suspenseful plotting. Our horror books span supernatural, paranormal, and grounded realism, all engineered to keep readers engaged through high-stakes progression and well-calibrated fear.",
+    icon: "/writting/Overlay (1).png"
+  },
+  {
+    title: "Science Fiction",
+    desc: "We create immersive sci-fi grounded in logic and forward-thinking speculation. Our books explore advanced technology, alternate societies, and philosophical dilemmas—delivered through sharp plotting, character depth, and world-building that meets genre standards.",
+    icon: "/writting/Overlay (2).png"
+  },
+  {
+    title: "Fantasy",
+    desc: "We build intricate fantasy worlds with structured magic systems, cultural depth, and dynamic conflicts. Our writing balances plot and lore, anchoring quests and political arcs in emotional and thematic development.",
+    icon: "/writting/Overlay (3).png"
+  },
+  {
+    title: "Memoir & Biography",
+    desc: "We turn personal experience into compelling, narratively sound manuscripts. Each project preserves your voice while structuring events for clarity, tension, and emotional resonance—making your life story meaningful to readers unfamiliar with your world.",
+    icon: "/writting/Overlay (4).png"
+  },
+  {
+    title: "Business & Thought Leadership",
+    desc: "We synthesize frameworks, insights, and personal case studies into clear, results-oriented business books. These projects are written to educate, influence, and establish your position as a trusted voice in your industry.",
+    icon: "/writting/Overlay (5).png"
+  },
+  {
+    title: "Self-Help & Wellness",
+    desc: "We write transformative content that connects real-world guidance with motivational tone. Each project is crafted to deliver structure, emotional clarity, and reader application—positioning you as an approachable, credible expert.",
+    icon: "/writting/Overlay (6).png"
+  },
+  {
+    title: "Children's Books",
+    desc: "We produce story-driven, age-appropriate content with developmental awareness and creative flair. From picture books to early readers, we focus on engaging narrative, character simplicity, and language that aligns with age group comprehension and joy.",
+    icon: "/writting/Overlay (7).png"
+  },
+  {
+    title: "Whitepapers",
+    desc: "We distill complex topics into professional, logically structured documents suited for B2B, SaaS, and consulting use cases. Our whitepapers clarify your expertise, demonstrate value, and support lead generation through authoritative thought content.",
+    icon: "/writting/Overlay (8).png"
+  }
+];
+---
+
+<section class="w-full bg-white py-16 sm:py-24 text-slate-900 font-montserrat border-t border-slate-100">
+  <div class="max-w-[1300px] mx-auto px-4 sm:px-6">
+    
+    <!-- Section Header -->
+    <div class="text-center space-y-4 mb-14 sm:mb-20 max-w-3xl mx-auto">
+      <h2 class="font-nunito font-bold text-3xl sm:text-5xl lg:text-[46px] leading-tight text-slate-900 tracking-tight line-clamp-2">
+        Genres We Cover
+      </h2>
+      <p class="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal max-w-2xl mx-auto">
+        Work with ebook writers skilled in your genre — from character-driven fiction to research-backed nonfiction. As an ebook writing agency, we match tone, tropes, and pacing for audience impact across thrillers, romance, business, and so many more diverse genres.
+      </p>
+    </div>
+
+    <!-- 3x3 Card Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+      {genres.map((g) => (
+        <div class="bg-white rounded-[24px] p-7 sm:p-8 border border-slate-200/90 shadow-[0_4px_24px_rgba(0,0,0,0.03)] hover:shadow-[0_12px_32px_rgba(61,46,97,0.08)] hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group h-full relative overflow-hidden">
+          
+          <!-- Soft Gradient Glow in Top-Right Corner -->
+          <div class="absolute -top-6 -right-6 w-32 h-32 bg-[#E2DFEB]/90 rounded-full blur-2xl pointer-events-none"></div>
+
+          <div class="relative z-10">
+            <!-- Icon 56x56 PNG from writting folder -->
+            <div class="w-14 h-14 mb-6 group-hover:scale-105 transition-transform duration-300">
+              <img 
+                src={g.icon} 
+                alt={g.title} 
+                class="w-14 h-14 object-contain select-none block" 
+                loading="lazy" 
+              />
+            </div>
+
+            <!-- Genre Title -->
+            <h3 class="font-nunito font-bold text-xl sm:text-[22px] text-slate-900 leading-snug tracking-tight mb-3 group-hover:text-[#3D2E61] transition-colors">
+              {g.title}
+            </h3>
+
+            <!-- Description -->
+            <p class="text-xs sm:text-[13px] text-slate-600 leading-relaxed font-normal mb-8">
+              {g.desc}
+            </p>
+          </div>
+
+          <!-- Bottom Button -->
+          <div class="relative z-10 mt-auto pt-2">
+            <a 
+              href="#book-consultation" 
+              class="w-full py-3 bg-[#3D2E61] hover:bg-[#4d3a7a] active:scale-[0.99] text-white font-bold text-xs rounded-xl shadow-xs text-center transition-all duration-200 block"
+            >
+              Start Your Book
+            </a>
+          </div>
+
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>

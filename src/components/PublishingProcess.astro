@@ -1,0 +1,130 @@
+---
+// PublishingProcess.astro - Fleck Publisher's 4-Step Book Publishing Process Section
+interface Props {
+  badge?: string;
+  title?: string;
+  subtitle?: string;
+  steps?: Array<{
+    step: string;
+    phase: string;
+    title: string;
+    desc: string;
+  }>;
+}
+
+const defaultSteps = [
+  {
+    step: "01",
+    phase: "PHASE 01",
+    title: "Project Intake & Publishing Goals",
+    desc: "We begin with a strategy session to clarify your publishing plan—platforms, formats, pricing, and launch timing. You set the direction. We map the path."
+  },
+  {
+    step: "02",
+    phase: "PHASE 02",
+    title: "Metadata, Categories & ISBN Setup",
+    desc: "We register your ISBN, write your metadata, and position your book with categories that improve visibility across Amazon, Apple Books, and other major retailers."
+  },
+  {
+    step: "03",
+    phase: "PHASE 03",
+    title: "Format Prep & Upload",
+    desc: "We export and validate your files—EPUB, PDF, MOBI—based on platform specs. Everything uploads cleanly, with zero errors or delays."
+  },
+  {
+    step: "04",
+    phase: "PHASE 04",
+    title: "Final Review & Go-Live Checklist",
+    desc: "One of the most prominent steps of our ebook publishing service where we verify links, pricing, formatting, and metadata. Then we push your book live, market-ready."
+  }
+];
+
+const {
+  badge = "THE AUTHOR'S JOURNEY",
+  title = "Fleck Publisher’s 4-Step Book Publishing Process",
+  subtitle = "Every book publishing journey at Fleck Publisher starts with a 1:1 discovery session - and concludes with your book landing on the right platforms. Here’s an insider look at our process.",
+  steps = defaultSteps
+} = Astro.props;
+---
+
+<section class="w-full bg-white py-16 sm:py-24 text-slate-900 font-montserrat border-t border-slate-100 relative overflow-hidden">
+  <div class="max-w-[1350px] mx-auto px-4 sm:px-6">
+    
+    <!-- Section Header -->
+    <div class="text-center space-y-4 mb-14 sm:mb-20 max-w-3xl mx-auto">
+      
+      <!-- Top Subtitle -->
+      {badge && (
+        <div>
+          <span class="text-xs sm:text-sm font-bold uppercase tracking-widest text-[#3D2E61] font-montserrat block">
+            {badge}
+          </span>
+        </div>
+      )}
+
+      <!-- Main Headline -->
+      <h2 class="font-nunito font-bold text-3xl sm:text-5xl lg:text-[46px] leading-tight text-slate-900 tracking-tight line-clamp-2">
+        {title}
+      </h2>
+
+      <!-- Subtitle Paragraph -->
+      <p class="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal max-w-2xl mx-auto">
+        {subtitle}
+      </p>
+    </div>
+
+    <!-- 4 Step Cards Grid with Connecting Horizontal Line on Desktop -->
+    <div class="relative">
+      
+      <!-- Subtle Desktop Connecting Line -->
+      <div class="hidden lg:block absolute top-1/2 left-8 right-8 h-[1px] bg-slate-100 -translate-y-1/2 z-0"></div>
+
+      <!-- Cards Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 relative z-10">
+        {steps.map((s) => (
+          <div class="bg-white rounded-[24px] p-6 sm:p-7 border border-slate-200/90 shadow-[0_4px_24px_rgba(0,0,0,0.03)] hover:shadow-[0_12px_32px_rgba(61,46,97,0.1)] hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group h-full relative overflow-hidden">
+            
+            <!-- Soft Gradient Blur in Top-Right Corner matching Figma -->
+            <div class="absolute -top-6 -right-6 w-32 h-32 bg-[#E2DFEB]/90 rounded-full blur-2xl pointer-events-none"></div>
+            <div class="absolute top-0 right-0 w-28 h-28 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-slate-200/60 via-purple-100/30 to-transparent rounded-tr-[24px] pointer-events-none"></div>
+
+            <div class="relative z-10">
+              <!-- Top Row: Big Number on Left, Squircle Badge on Right -->
+              <div class="flex items-center justify-between mb-6">
+                <span class="font-nunito font-bold text-3xl sm:text-4xl text-slate-800 tracking-tight">
+                  {s.step}
+                </span>
+
+                <div class="w-8 h-8 rounded-[12px] bg-slate-100/90 border border-slate-200/80 flex items-center justify-center text-[11px] font-semibold text-slate-500 shadow-xs">
+                  {s.step}
+                </div>
+              </div>
+
+              <!-- Step Title -->
+              <h3 class="font-nunito font-bold text-lg sm:text-[18px] text-slate-900 tracking-tight leading-snug mb-3">
+                {s.title}
+              </h3>
+
+              <!-- Description -->
+              <p class="text-xs sm:text-[13px] text-slate-600 leading-relaxed font-normal">
+                {s.desc}
+              </p>
+            </div>
+
+            <!-- Bottom Row: Phase Name & Progress Pill -->
+            <div class="pt-8 mt-6 border-t border-slate-100/80 flex items-center justify-between text-[11px] font-bold text-slate-400 group-hover:text-slate-600 transition-colors tracking-wider">
+              <span>{s.phase}</span>
+              
+              <!-- Single progress bar that fills up on card hover -->
+              <div class="w-9 h-1.5 rounded-full bg-slate-200 overflow-hidden relative">
+                <div class="h-full bg-[#3D2E61] rounded-full w-4 group-hover:w-full transition-all duration-300 ease-out"></div>
+              </div>
+            </div>
+
+          </div>
+        ))}
+      </div>
+    </div>
+
+  </div>
+</section>

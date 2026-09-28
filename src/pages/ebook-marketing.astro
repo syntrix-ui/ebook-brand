@@ -1,0 +1,119 @@
+---
+// ebook-marketing.astro - Ebook Marketing Services Page matching Figma mockup exactly
+import '../styles/globals.css';
+import Header from '../components/Header.astro';
+import AboutHero from '../components/AboutHero.astro';
+import AboutShowcase from '../components/AboutShowcase.astro';
+import AboutManuscript from '../components/AboutManuscript.astro';
+import MarketingChannels from '../components/MarketingChannels.astro';
+import AboutTeamBanner from '../components/AboutTeamBanner.astro';
+import PublishingProcess from '../components/PublishingProcess.astro';
+import FleckDifference from '../components/FleckDifference.astro';
+import WhyChooseFleck from '../components/WhyChooseFleck.astro';
+import SuccessStories from '../components/SuccessStories.astro';
+import Roadmap from '../components/Roadmap.astro';
+import Faqs from '../components/Faqs.astro';
+import Footer from '../components/Footer.astro';
+import { getServiceData } from '../data/servicesData';
+
+const service = getServiceData('ebook-marketing');
+---
+
+<html lang="en" class="dark">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={service.metaDescription} />
+    <title>{service.metaTitle}</title>
+
+    <!-- Google Fonts Montserrat & Nunito Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300..900;1,300..900&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap" rel="stylesheet">
+  </head>
+  <body class="min-h-screen bg-[#0a080d] text-slate-100 font-montserrat selection:bg-[#3D2E61] selection:text-white relative overflow-x-hidden">
+    
+    <!-- Header / Navigation Bar -->
+    <Header />
+
+    <!-- Main Content Area arranged in exact sequence matching Figma design -->
+    <main class="w-full">
+      <!-- Section 1: Hero without form -->
+      <AboutHero 
+        subtitle={service.hero.badge}
+        titleNormal={service.hero.title}
+        titleBold={service.hero.titleHighlight}
+        desc={service.hero.subtitle}
+        serviceTag={service.hero.serviceTag}
+        bgImg={service.hero.bgImg}
+        showForm={false}
+        lightOverlay={true}
+      />
+
+      <!-- Section 2: Book Showcase with Group 95.png -->
+      <AboutShowcase 
+        headline={service.showcase.headline}
+        desc={service.showcase.description}
+        btnText={service.showcase.btnText}
+        collageImg={service.showcase.collageImg}
+      />
+
+      <!-- Section 3: Submit Your Manuscript / Blueprint -->
+      <AboutManuscript 
+        title={service.manuscript.title}
+        subtitle={service.manuscript.subtitle}
+        cards={service.manuscript.cards}
+      />
+
+      <!-- Section 4: Where We Market eBooks (8 cards) -->
+      <MarketingChannels />
+
+      <!-- Section 5: Team / Department Banner (Dark Purple Banner with Video) -->
+      <AboutTeamBanner 
+        headline={service.purpleBanner.headline}
+        subheading={service.purpleBanner.subheading}
+        p1={service.purpleBanner.p1}
+        p2={service.purpleBanner.p2}
+      />
+
+      <!-- Section 6: 4-Step Process -->
+      <PublishingProcess 
+        badge={service.process.badge}
+        title={service.process.title}
+        subtitle={service.process.subtitle}
+        steps={service.process.steps}
+      />
+
+      <!-- Section 7: The Fleck Difference - Marketing (3 cards) -->
+      <FleckDifference 
+        badge={service.difference.badge}
+        title={service.difference.title}
+        subtitle={service.difference.subtitle}
+        cards={service.difference.cards}
+      />
+
+      <!-- Section 8: Why Authors Choose Fleck Publisher's Marketing Services -->
+      <WhyChooseFleck 
+        title={service.whyChoose.title}
+        points={service.whyChoose.points}
+        btnText={service.whyChoose.btnText}
+        authorImg={service.whyChoose.authorImg}
+      />
+
+      <!-- Section 9: Success Stories Carousel -->
+      <SuccessStories />
+
+      <!-- Section 10: Have An Amazing Idea? Roadmap Form -->
+      <Roadmap />
+
+      <!-- Section 11: Frequently Asked Questions (FAQs) -->
+      <Faqs />
+    </main>
+
+    <!-- Section 12: Footer -->
+    <Footer />
+
+  </body>
+</html>

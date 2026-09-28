@@ -1,0 +1,104 @@
+---
+// AboutWhatWeDo.astro - What We Do Section with 5-Book Collage matching Figma mockup
+---
+
+<section class="w-full bg-white py-16 sm:py-24 lg:py-28 text-slate-900 font-montserrat relative overflow-hidden">
+  <div class="max-w-[1350px] mx-auto px-4 sm:px-6">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
+      
+      <!-- Left Column: Copy & CTA -->
+      <div class="lg:col-span-6 space-y-6">
+        
+        <!-- Script / Subtitle Tag -->
+        <span class="text-[#3D2E61] font-bold text-xs sm:text-sm uppercase tracking-widest block font-montserrat">
+          What we do
+        </span>
+
+        <!-- Main Headline -->
+        <h2 class="font-nunito font-bold text-3xl sm:text-4xl lg:text-[44px] leading-[1.15] text-slate-900 tracking-tight line-clamp-2">
+          Publishing That Connects <br class="hidden sm:inline" />
+          Writers to the World
+        </h2>
+
+        <!-- Descriptive Paragraphs -->
+        <div class="space-y-4 text-xs sm:text-sm text-slate-600 font-normal leading-relaxed">
+          <p>
+            At Fleck Publisher, we provide an all-inclusive publishing ecosystem designed to turn ambitious ideas into commercial bestsellers. From developmental editing, interior formatting, and cover design to global print and digital distribution across 40,000+ retailers worldwide.
+          </p>
+          <p>
+            Our authors retain 100% of their rights and royalties while benefiting from the speed, polish, and prestige of an elite publishing team. We handle the heavy technical lifting so you can focus on writing your next masterpiece.
+          </p>
+        </div>
+
+        <!-- CTA Button -->
+        <div class="pt-2">
+          <a 
+            href="/#services" 
+            class="inline-flex items-center justify-center px-7 py-3 bg-[#3D2E61] hover:bg-[#4d3a7a] active:scale-[0.99] text-white font-bold text-xs rounded-xl shadow-md transition-all duration-200 cursor-pointer"
+          >
+            Explore Services
+          </a>
+        </div>
+
+      </div>
+
+      <!-- Right Column: 5-Book Floating Collage -->
+      <div class="lg:col-span-6 flex justify-center lg:justify-end items-center">
+        <div class="relative w-full max-w-[480px] grid grid-cols-2 gap-4 sm:gap-5 p-4">
+          
+          <!-- Middle Left Floating Highlight Book -->
+          <div class="absolute -left-6 top-1/2 -translate-y-1/2 w-32 sm:w-36 z-20 shadow-2xl rounded-xl overflow-hidden hover:scale-105 transition-transform duration-300">
+            <img 
+              src="/39b1637c966308ede50bcdb7b21359babcfdb0e2.jpg" 
+              alt="A Court of Splintered Harmony" 
+              class="w-full h-auto object-cover rounded-xl shadow-lg border border-white/20"
+              loading="lazy"
+            />
+          </div>
+
+          <!-- Top Left Book -->
+          <div class="shadow-xl rounded-xl overflow-hidden ml-auto w-36 sm:w-40 hover:scale-105 transition-transform duration-300">
+            <img 
+              src="/12f9e45c63bc59a57ec6744141dd34ac67fbbd3a.jpg" 
+              alt="The Night Collector" 
+              class="w-full h-auto object-cover rounded-xl border border-slate-100"
+              loading="lazy"
+            />
+          </div>
+
+          <!-- Top Right Book -->
+          <div class="shadow-xl rounded-xl overflow-hidden w-36 sm:w-40 hover:scale-105 transition-transform duration-300">
+            <img 
+              src="/244b958bea55399fa6b714f88f6a9c27c9003ed8.jpg" 
+              alt="Dire Bound" 
+              class="w-full h-auto object-cover rounded-xl border border-slate-100"
+              loading="lazy"
+            />
+          </div>
+
+          <!-- Bottom Left Book -->
+          <div class="shadow-xl rounded-xl overflow-hidden ml-auto w-36 sm:w-40 hover:scale-105 transition-transform duration-300">
+            <img 
+              src="/1846883451fd8e7888d65e8818d2fe467f02adb5.jpg" 
+              alt="Obsidian" 
+              class="w-full h-auto object-cover rounded-xl border border-slate-100"
+              loading="lazy"
+            />
+          </div>
+
+          <!-- Bottom Right Book -->
+          <div class="shadow-xl rounded-xl overflow-hidden w-36 sm:w-40 hover:scale-105 transition-transform duration-300">
+            <img 
+              src="/f9aefee6fee097eafd74850fe2328124faea2e3c.jpg" 
+              alt="Queen of Rot and Pain" 
+              class="w-full h-auto object-cover rounded-xl border border-slate-100"
+              loading="lazy"
+            />
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>

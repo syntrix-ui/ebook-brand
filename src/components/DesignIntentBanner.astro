@@ -1,0 +1,48 @@
+---
+// DesignIntentBanner.astro - "Why Design Sells Books" section with book mockup on table
+---
+
+<section class="w-full bg-white py-16 sm:py-20 lg:py-24 text-slate-900 font-montserrat border-t border-slate-100 overflow-hidden">
+  <div class="max-w-[1300px] mx-auto px-4 sm:px-6">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+      
+      <!-- Left Content -->
+      <div class="lg:col-span-6 space-y-5 sm:space-y-6">
+        <h2 class="font-nunito font-semibold text-3xl sm:text-4xl lg:text-[40px] leading-tight text-slate-900 tracking-tight max-w-xl line-clamp-2">
+          Why Design Sells Books
+        </h2>
+
+        <div class="space-y-2 text-xs sm:text-sm font-medium text-slate-700 leading-relaxed">
+          <p>Design is the first reason a KDP hobbyist stops scrolling.</p>
+          <p>A professionally designed cover increases click-through rates by up to 60%,</p>
+          <p>Clean interior layout improves reading time and reduces bounce rates by 28%</p>
+        </div>
+
+        <p class="text-xs sm:text-[13px] text-slate-600 leading-relaxed font-normal max-w-xl">
+          On platforms like Amazon, covers, categories, and thumbnails decide whether a book will be seen and celebrated—before a single word is read. At Fleck, we design to compete, convert, and visually position your book for the readers you're writing for!
+        </p>
+
+        <div class="pt-2">
+          <a 
+            href="/contact" 
+            class="inline-flex items-center justify-center px-8 py-3.5 bg-[#3D2E61] hover:bg-[#4d3a7a] active:scale-[0.99] text-white font-bold text-xs sm:text-sm rounded-xl shadow-md hover:shadow-lg transition-all duration-200 cursor-pointer"
+          >
+            Start Your Project
+          </a>
+        </div>
+      </div>
+
+      <!-- Right Image: Book Standing on Table -->
+      <div class="lg:col-span-6 flex justify-center lg:justify-end">
+        <div class="relative w-full max-w-[540px]">
+          <img 
+            src="/design/Book-Mockup-Vol.png.png" 
+            alt="Book Design Mockup on Table" 
+            class="w-full h-auto object-contain drop-shadow-xl"
+          />
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>

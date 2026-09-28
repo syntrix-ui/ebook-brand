@@ -1,0 +1,9 @@
+---
+// outline-chapter-planning.astro - Outline & Chapter Planning Service Page
+import ServicePageTemplate from '../components/ServicePageTemplate.astro';
+import { getServiceData } from '../data/servicesData';
+
+const service = getServiceData('outline-chapter-planning');
+---
+
+<ServicePageTemplate service={service} />

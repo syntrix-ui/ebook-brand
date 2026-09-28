@@ -1,0 +1,9 @@
+---
+// book-coaching.astro - Book Coaching Services Page
+import ServicePageTemplate from '../components/ServicePageTemplate.astro';
+import { getServiceData } from '../data/servicesData';
+
+const service = getServiceData('book-coaching');
+---
+
+<ServicePageTemplate service={service} />
